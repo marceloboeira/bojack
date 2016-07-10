@@ -12,8 +12,15 @@ module BoJack
         if socket
           spawn do
             loop do
-              request = socket.gets
-              socket.puts("pong") if request
+              if request = socket.gets
+                command = request.strip
+
+                if command == "ping"
+                  socket.puts("pong")
+                else
+                  socket.puts("error: #{command} is not a valid command")
+                end
+              end
             end
           end
         end

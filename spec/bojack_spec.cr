@@ -12,5 +12,13 @@ describe BoJack::Server do
 
       buffer.should eq("pong\n")
     end
+
+    it "returns error" do
+      socket.puts("jack")
+
+      buffer = socket.gets
+
+      buffer.should eq("error: jack is not a valid command\n")
+    end
   end
 end
