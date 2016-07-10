@@ -35,6 +35,11 @@ module BoJack
                   else
                     socket.puts("error: '#{key}' is not a valid key")
                   end
+                elsif command == "close"
+                  socket.puts("closing...")
+
+                  socket.close
+                  break
                 else
                   socket.puts("error: '#{command}' is not a valid command")
                 end

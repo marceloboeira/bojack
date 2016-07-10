@@ -56,5 +56,6 @@ describe BoJack::Server do
         buffer.should eq("error: 'jack' is not a valid command\n")
       end
     end
+    socket.puts("close")
   end
 end
