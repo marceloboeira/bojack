@@ -28,9 +28,13 @@ module BoJack
                   socket.puts(data[key])
                 elsif command == "get"
                   key = request[1]
-                  value = data[key]
 
-                  socket.puts(value)
+                  if data[key]?
+                    value = data[key]
+                    socket.puts(value)
+                  else
+                    socket.puts("error: '#{key}' is not a valid key")
+                  end
                 else
                   socket.puts("error: '#{command}' is not a valid command")
                 end

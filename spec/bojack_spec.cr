@@ -26,17 +26,29 @@ describe BoJack::Server do
     end
 
     describe "get" do
-      it "return the key value" do
-        socket.puts("get bo")
+      context "with a valid key" do
+        it "return the key value" do
+          socket.puts("get bo")
 
-        buffer = socket.gets
+          buffer = socket.gets
 
-        buffer.should eq("jack\n")
+          buffer.should eq("jack\n")
+        end
+      end
+
+      context "with an invalid key" do
+        it "return proper error message" do
+          socket.puts("get bar")
+
+          buffer = socket.gets
+
+          buffer.should eq("error: 'bar' is not a valid key\n")
+        end
       end
     end
 
     describe "invalid command" do
-      it "return error" do
+      it "return proper error message" do
         socket.puts("jack")
 
         buffer = socket.gets
