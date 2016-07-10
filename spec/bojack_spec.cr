@@ -25,6 +25,16 @@ describe BoJack::Server do
       end
     end
 
+    describe "get" do
+      it "return the key value" do
+        socket.puts("get bo")
+
+        buffer = socket.gets
+
+        buffer.should eq("jack\n")
+      end
+    end
+
     describe "invalid command" do
       it "return error" do
         socket.puts("jack")
