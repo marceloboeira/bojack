@@ -5,20 +5,24 @@ describe BoJack::Server do
   Thread.new { BoJack::Server.start }
 
   TCPSocket.open("localhost", 5000) do |socket|
-    it "pongs" do
-      socket.puts("ping")
+    describe "ping" do
+      it "return pong" do
+        socket.puts("ping")
 
-      buffer = socket.gets
+        buffer = socket.gets
 
-      buffer.should eq("pong\n")
+        buffer.should eq("pong\n")
+      end
     end
 
-    it "returns error" do
-      socket.puts("jack")
+    describe "invalid command" do
+      it "return error" do
+        socket.puts("jack")
 
-      buffer = socket.gets
+        buffer = socket.gets
 
-      buffer.should eq("error: jack is not a valid command\n")
+        buffer.should eq("error: jack is not a valid command\n")
+      end
     end
   end
 end
