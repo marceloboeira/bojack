@@ -6,6 +6,7 @@ module BoJack
     def self.start
       server = TCPServer.new("localhost", 5000)
       server.recv_buffer_size = 4096
+      data = Hash(String, String).new
 
       loop do
         socket = server.accept
@@ -13,10 +14,18 @@ module BoJack
           spawn do
             loop do
               if request = socket.gets
-                command = request.strip
+                request = request.split(" ").map{|item| item.strip }
+                command = request[0]
 
                 if command == "ping"
                   socket.puts("pong")
+                elsif command == "set"
+                  key = request[1]
+                  value = request[2]
+
+                  data[key] = value
+
+                  socket.puts(value)
                 else
                   socket.puts("error: #{command} is not a valid command")
                 end
