@@ -25,7 +25,7 @@ module BoJack
 
                   data[key] = value
 
-                  socket.puts(value)
+                  socket.puts(data[key])
                 elsif command == "get"
                   key = request[1]
                   value = data[key]
