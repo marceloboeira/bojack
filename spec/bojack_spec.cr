@@ -1,29 +1,16 @@
 require "./spec_helper"
-
+require "./../src/bojack"
 
 describe BoJack::Server do
-  before do
-    Thread.new { BoJack::Server.start }
-  end
+  Thread.new { BoJack::Server.start }
 
-  context "on connection" do
-    it "sends a hello message" do
-      TCPSocket.open("localhost", 5000) do |socket|
-        # ensures block execution
-        expect(true).to eq(true)
-      end
-    end
-  end
-
-  context "when ping" do
+  TCPSocket.open("localhost", 5000) do |socket|
     it "pongs" do
-      TCPSocket.open("localhost", 5000) do |socket|
-        socket.puts("ping")
+      socket.puts("ping")
 
-        buffer = socket.gets
+      buffer = socket.gets
 
-        expect(buffer).to eq("pong\n")
-      end
+      buffer.should eq("pong\n")
     end
   end
 end

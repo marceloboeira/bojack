@@ -1,4 +1,2 @@
-require "spec2"
-require "../src/bojack"
+require "spec"
 
-include Spec2::GlobalDSL
