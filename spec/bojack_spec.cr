@@ -41,7 +41,7 @@ describe BoJack::Server do
 
         buffer = socket.gets
 
-        buffer.should eq("error: jack is not a valid command\n")
+        buffer.should eq("error: 'jack' is not a valid command\n")
       end
     end
   end

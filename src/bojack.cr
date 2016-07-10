@@ -32,7 +32,7 @@ module BoJack
 
                   socket.puts(value)
                 else
-                  socket.puts("error: #{command} is not a valid command")
+                  socket.puts("error: '#{command}' is not a valid command")
                 end
               end
             end
