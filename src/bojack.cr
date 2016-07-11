@@ -35,6 +35,15 @@ module BoJack
                   else
                     socket.puts("error: '#{key}' is not a valid key")
                   end
+                elsif command == "delete"
+                  key = request[1]
+
+                  if data[key]?
+                    value = data.delete(key)
+                    socket.puts(value)
+                  else
+                    socket.puts("error: '#{key}' is not a valid key")
+                  end
                 elsif command == "close"
                   socket.puts("closing...")
 
