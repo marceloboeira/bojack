@@ -2,4 +2,27 @@
 # BoJack
 > A non-reliable in-memory key-value database
 
+## Instalation
 
+**Requirements**
+
+* The latest version of Crystal (0.18.x).
+* LLVM development files.
+
+1. Clone the repo: `git clone https://github.com/marceloboeira/bojack`
+2. Switch to repo-directory: `cd bojack`
+3. Build: `make install`
+
+## Showtime
+
+1. Run: `bojack-server`
+2. Run: `telnet localhost 5000`
+
+## Usage
+
+|command|description|params|example|return|
+|---|---|---|---|---|---|
+|set| sets a key with the given name and value  | key, value  | `set foo bar`  | the value of the key "bar"  |
+|get| gets the value of the given value  | key | `get foo` | the value stored at the key, "bar" |
+|delete| deletes the given key | key | `delete foo` | the value at the deleted key "bar"  |
+|ping| checks the server | --  | `ping` | pong if everything is correct |
