@@ -1,5 +1,5 @@
-require "./spec_helper"
-require "./../src/bojack"
+require "../spec_helper"
+require "../src/bojack/server"
 
 describe BoJack::Server do
   Thread.new { BoJack::Server.start }
