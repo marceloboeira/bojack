@@ -2,8 +2,8 @@ require "socket"
 
 module BoJack
   module Server
-    def self.start
-      server = TCPServer.new("localhost", 5000)
+    def self.start(port = 5000)
+      server = TCPServer.new("localhost", port)
       server.recv_buffer_size = 4096
       data = Hash(String, String).new
 
