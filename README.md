@@ -2,7 +2,7 @@
 # BoJack
 > A non-reliable in-memory key-value store
 
-## Instalation
+## Installation
 
 **Requirements**
 
