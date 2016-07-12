@@ -15,7 +15,7 @@
 
 ## Showtime
 
-1. Run: `bojack-server`
+1. Run: `bojack-server -p 5000`
 2. Run: `telnet localhost 5000`
 
 ## Usage
