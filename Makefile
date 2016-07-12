@@ -3,7 +3,7 @@ BOJACK_BIN ?= $(shell which bojack-server)
 PREFIX ?= /usr/local
 
 build:
-	$(CRYSTAL_BIN) compile --release -o bin/bojack-server src/bojack/run.cr $(CRFLAGS)
+	$(CRYSTAL_BIN) compile --release -o bin/bojack-server src/bojack/server/cli.cr $(CRFLAGS)
 
 clean:
 	rm -f ./bin/bojack-server

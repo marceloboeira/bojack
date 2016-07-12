@@ -1,7 +1,7 @@
 require "socket"
 
 module BoJack
-  class Server
+  module Server
     def self.start
       server = TCPServer.new("localhost", 5000)
       server.recv_buffer_size = 4096

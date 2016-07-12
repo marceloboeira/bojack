@@ -1,3 +1,3 @@
-require "./server"
+require "../server"
 
 BoJack::Server.start
