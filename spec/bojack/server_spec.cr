@@ -1,5 +1,6 @@
 require "../spec_helper"
 require "../src/bojack/server"
+require "socket"
 
 describe BoJack::Server do
   Thread.new { BoJack::Server.start }
