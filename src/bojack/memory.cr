@@ -31,6 +31,10 @@ module BoJack
       end
     end
 
+    def size
+      @cache.size
+    end
+
     private def read_entry(key : K) : Entry(V)?
       if entry = @cache[key]?
         entry

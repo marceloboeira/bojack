@@ -64,6 +64,18 @@ describe BoJack::Server do
       end
     end
 
+    describe "size" do
+      it "reurns the size of the store" do
+        socket.puts("set bo jack")
+        socket.gets
+
+        socket.puts("size")
+        buffer = socket.gets
+
+        buffer.should eq("1\n")
+      end
+    end
+
     describe "invalid command" do
       it "returns proper error message" do
         socket.puts("jack")

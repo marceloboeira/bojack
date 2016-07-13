@@ -44,6 +44,8 @@ module BoJack
                   rescue
                     socket.puts("error: '#{key}' is not a valid key")
                   end
+                elsif command == "size"
+                  socket.puts(memory.size)
                 elsif command == "close"
                   socket.puts("closing...")
 

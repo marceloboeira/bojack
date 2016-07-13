@@ -13,7 +13,7 @@ end
 describe BoJack::Memory do
   context "when reading" do
     context "a valid key" do
-      it "reads the value from memory" do
+      it "reads the value" do
         memory.read("diane").should eq("nguyen")
       end
     end
@@ -28,7 +28,7 @@ describe BoJack::Memory do
   end
   
   context "when writing" do
-    it "writes the key, value on the storage" do
+    it "writes the key, value" do
       value = memory.write("princess", "carolyn")
 
       value.should eq("carolyn")
@@ -38,7 +38,7 @@ describe BoJack::Memory do
 
   context "when deleting" do
     context "a valid key" do
-      it "deletes the key from the memory" do
+      it "deletes the key" do
         value = memory.delete("princess")
 
         value.should eq("carolyn")
@@ -55,5 +55,11 @@ describe BoJack::Memory do
         }
       end
     end 
+  end
+
+  context "when checking size" do
+    it "returns the number of items" do
+      memory.size.should eq(2)
+    end
   end
 end
