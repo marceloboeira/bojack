@@ -3,7 +3,9 @@ require "../src/bojack/server"
 require "socket"
 
 describe BoJack::Server do
-  Thread.new { BoJack::Server.start }
+  spawn do
+    BoJack::Server.start
+  end
 
   TCPSocket.open("localhost", 5000) do |socket|
     describe "ping" do
