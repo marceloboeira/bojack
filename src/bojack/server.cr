@@ -2,9 +2,14 @@ require "socket"
 require "./memory"
 
 module BoJack
-  module Server
-    def self.start(hostname = "127.0.0.1", port = 5000)
-      server = TCPServer.new(hostname, port)
+  class Server
+    @hostname : String
+    @port : Int8 | Int16 | Int32 | Int64
+
+    def initialize(@hostname = "127.0.0.1", @port = 5000); end
+
+    def start
+      server = TCPServer.new(@hostname, @port)
       server.recv_buffer_size = 4096
       memory = BoJack::Memory(String, String).new
 

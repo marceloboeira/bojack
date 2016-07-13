@@ -3,11 +3,14 @@ require "../../src/bojack/server"
 require "socket"
 
 describe BoJack::Server do
+  hostname = "127.0.0.1"
+  port = 5000
+
   spawn do
-    BoJack::Server.start
+    BoJack::Server.new(hostname, port).start
   end
 
-  TCPSocket.open("localhost", 5000) do |socket|
+  TCPSocket.open(hostname, port) do |socket|
     describe "ping" do
       it "returns pong" do
         socket.puts("ping")

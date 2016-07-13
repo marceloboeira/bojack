@@ -38,7 +38,7 @@ cli = Commander::Command.new do |command|
     end
 
     command.run do |options, arguments|
-      BoJack::Server.start(options.string["hostname"], options.int["port"])
+      BoJack::Server.new(options.string["hostname"], options.int["port"]).start
     end
   end
 end
