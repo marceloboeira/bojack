@@ -1,5 +1,5 @@
 require "../spec_helper"
-require "../src/bojack/memory"
+require "../../src/bojack/memory"
 
 memory = BoJack::Memory(String, String).new
 

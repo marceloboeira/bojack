@@ -1,5 +1,5 @@
 require "../spec_helper"
-require "../src/bojack/server"
+require "../../src/bojack/server"
 require "socket"
 
 describe BoJack::Server do

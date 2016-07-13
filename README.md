@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/marceloboeira/bojack/master/docs/bojack.png" width="250" align="right">
-# BoJack
+# BoJack [![Build Status](https://travis-ci.org/marceloboeira/bojack.svg?branch=master)](https://travis-ci.org/marceloboeira/bojack)
 > A non-reliable in-memory key-value store
 
 ## Installation
