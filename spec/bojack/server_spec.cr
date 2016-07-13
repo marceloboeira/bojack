@@ -7,7 +7,7 @@ describe BoJack::Server do
 
   TCPSocket.open("localhost", 5000) do |socket|
     describe "ping" do
-      it "return pong" do
+      it "returns pong" do
         socket.puts("ping")
         buffer = socket.gets
 
@@ -16,7 +16,7 @@ describe BoJack::Server do
     end
 
     describe "set" do
-      it "set key with value" do
+      it "sets key with value" do
         socket.puts("set bo jack")
         buffer = socket.gets
 
@@ -26,7 +26,7 @@ describe BoJack::Server do
 
     describe "get" do
       context "with a valid key" do
-        it "return the key value" do
+        it "returns the key value" do
           socket.puts("get bo")
           buffer = socket.gets
 
@@ -35,7 +35,7 @@ describe BoJack::Server do
       end
 
       context "with an invalid key" do
-        it "return proper error message" do
+        it "returns proper error message" do
           socket.puts("get bar")
           buffer = socket.gets
 
@@ -46,7 +46,7 @@ describe BoJack::Server do
 
     describe "delete" do
       context "with a valid key" do
-        it "return the key value" do
+        it "returns the key value" do
           socket.puts("delete bo")
           buffer = socket.gets
 
@@ -55,7 +55,7 @@ describe BoJack::Server do
       end
 
       context "with an invalid key" do
-        it "return proper error message" do
+        it "returns proper error message" do
           socket.puts("delete bar")
           buffer = socket.gets
 
@@ -65,7 +65,7 @@ describe BoJack::Server do
     end
 
     describe "invalid command" do
-      it "return proper error message" do
+      it "returns proper error message" do
         socket.puts("jack")
         buffer = socket.gets
 

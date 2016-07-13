@@ -1,11 +1,12 @@
 require "socket"
+require "./memory"
 
 module BoJack
   module Server
     def self.start(hostname = "127.0.0.1", port = 5000)
       server = TCPServer.new(hostname, port)
       server.recv_buffer_size = 4096
-      data = Hash(String, String).new
+      memory = BoJack::Memory(String, String).new
 
       loop do
         socket = server.accept
@@ -22,25 +23,25 @@ module BoJack
                   key = request[1]
                   value = request[2]
 
-                  data[key] = value
+                  memory.write(key, value)
 
-                  socket.puts(data[key])
+                  socket.puts(value)
                 elsif command == "get"
                   key = request[1]
 
-                  if data[key]?
-                    value = data[key]
+                  begin
+                    value = memory.read(key)
                     socket.puts(value)
-                  else
+                  rescue
                     socket.puts("error: '#{key}' is not a valid key")
                   end
                 elsif command == "delete"
                   key = request[1]
 
-                  if data[key]?
-                    value = data.delete(key)
+                  begin
+                    value = memory.delete(key)
                     socket.puts(value)
-                  else
+                  rescue
                     socket.puts("error: '#{key}' is not a valid key")
                   end
                 elsif command == "close"
