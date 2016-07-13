@@ -14,8 +14,7 @@ module BoJack
       memory = BoJack::Memory(String, String).new
 
       loop do
-        socket = server.accept
-        if socket
+        if socket = server.accept
           spawn do
             loop do
               if request = socket.gets
