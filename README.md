@@ -11,7 +11,7 @@
 
 1. Clone the repo: `git clone https://github.com/marceloboeira/bojack`
 2. Switch to repo-directory: `cd bojack`
-3. Build: `make install`
+3. Build: `make install` (sudo for linux users)
 
 ## Showtime
 
