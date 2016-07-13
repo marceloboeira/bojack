@@ -1,6 +1,6 @@
 <img src="https://raw.githubusercontent.com/marceloboeira/bojack/master/docs/bojack.png" width="250" align="right">
 # BoJack [![Build Status](https://travis-ci.org/marceloboeira/bojack.svg?branch=master)](https://travis-ci.org/marceloboeira/bojack)
-> A non-reliable in-memory key-value store
+> A non-reliable in-memory key-value store.
 
 ## Installation
 
@@ -15,7 +15,7 @@
 
 ## Showtime
 
-1. Run: `bojack-server -p 5000`
+1. Run: `bojack server -p 5000`
 2. Run: `telnet 127.0.0.1 5000`
 
 ## Usage

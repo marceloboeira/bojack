@@ -5,3 +5,8 @@ authors:
   - Marcelo Boeira <me@marceloboeira.com>
 
 license: MIT
+
+dependencies:
+  commander:
+    github: mrrooijen/commander
+    version: ~> 0.3.3
