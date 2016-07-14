@@ -1,5 +1,8 @@
 require "socket"
 require "./memory"
+require "./commands/set"
+require "./commands/get"
+require "./commands/delete"
 
 module BoJack
   class Server
@@ -22,34 +25,29 @@ module BoJack
 
               request = request.split(" ").map { |item| item.strip }
               command = request[0]
+              key = request[1]
+              value = request[2] || ""
 
               if command == "ping"
                 socket.puts("pong")
               elsif command == "set"
-                key = request[1]
-                value = request[2]
 
-                memory.write(key, value)
+                cmd = Bojack::Commands::Set.new()
+                response = cmd.execute(memory, key, value)
 
-                socket.puts(value)
+                socket.puts(response)
               elsif command == "get"
                 key = request[1]
+                cmd = Bojack::Commands::Get.new()
+                response = cmd.execute(memory, key, value)
 
-                begin
-                  value = memory.read(key)
-                  socket.puts(value)
-                rescue
-                  socket.puts("error: '#{key}' is not a valid key")
-                end
+                socket.puts(response)
               elsif command == "delete"
                 key = request[1]
+                cmd = Bojack::Commands::Delete.new()
+                response = cmd.execute(memory, key, value)
 
-                begin
-                  value = memory.delete(key)
-                  socket.puts(value)
-                rescue
-                  socket.puts("error: '#{key}' is not a valid key")
-                end
+                socket.puts(response)
               elsif command == "size"
                 socket.puts(memory.size)
               elsif command == "close"
