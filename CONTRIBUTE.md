@@ -1,6 +1,6 @@
 # Contributing
 
-1. Fork it (https://github.com/marceloboeira/marceloboeira/fork)
+1. Fork it (https://github.com/marceloboeira/bojack/fork)
 2. Create your feature branch (git checkout -b my-awesome-new-feature)
 3. Commit your changes (follwing our commit police)
 4. Push to the branch (git push origin my-new-feature)
