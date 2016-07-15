@@ -9,6 +9,8 @@
 * The latest version of Crystal (0.18.x).
 * LLVM development files.
 
+**Steps**
+
 1. Clone the repo: `git clone https://github.com/marceloboeira/bojack`
 2. Switch to repo-directory: `cd bojack`
 3. Build: `make install` (sudo for linux users)
