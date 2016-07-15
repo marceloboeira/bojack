@@ -1,5 +1,6 @@
 require "socket"
 require "./memory"
+require "./params"
 require "./commands/set"
 require "./commands/get"
 require "./commands/delete"
@@ -23,40 +24,34 @@ module BoJack
               request = socket.gets
               break unless request
 
-              request = request.split(" ").map { |item| item.strip }
-              command = request[0]
-              key = request[1]
-              value = request[2] || ""
+              params = Bojack::Params.from(request)
 
-              if command == "ping"
+              if params.command == "ping"
                 socket.puts("pong")
-              elsif command == "set"
-
+              elsif params.command == "set"
                 cmd = Bojack::Commands::Set.new()
-                response = cmd.execute(memory, key, value)
+                response = cmd.execute(memory, params.key, params.value)
 
                 socket.puts(response)
-              elsif command == "get"
-                key = request[1]
+              elsif params.command == "get"
                 cmd = Bojack::Commands::Get.new()
-                response = cmd.execute(memory, key, value)
+                response = cmd.execute(memory, params.key, params.value)
 
                 socket.puts(response)
-              elsif command == "delete"
-                key = request[1]
+              elsif params.command == "delete"
                 cmd = Bojack::Commands::Delete.new()
-                response = cmd.execute(memory, key, value)
+                response = cmd.execute(memory, params.key, params.value)
 
                 socket.puts(response)
-              elsif command == "size"
+              elsif params.command == "size"
                 socket.puts(memory.size)
-              elsif command == "close"
+              elsif params.command == "close"
                 socket.puts("closing...")
 
                 socket.close
                 break
               else
-                socket.puts("error: '#{command}' is not a valid command")
+                socket.puts("error: '#{params.command}' is not a valid command")
               end
             end
           end
