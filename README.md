@@ -27,3 +27,7 @@
 |delete| deletes the given key | key | `delete foo` | the value at the deleted key "bar"  |
 |size| return the number of stored items | -- | `size` | the value of stored keys in memory |
 |ping| checks the server | --  | `ping` | pong if everything is correct |
+
+## Contributing
+
+Want to contribute? Make sure you follow the [guide](CONTRIBUTE.md).
