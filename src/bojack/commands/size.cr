@@ -1,11 +1,10 @@
-require "../commands/command"
-require "../memory"
+require "./command"
 
 module Bojack
   module Commands
     class Size < Command
       def execute(memory, key : String?, value : String?) : String
-        memory.size
+        "#{memory.size}"
       end
     end
   end

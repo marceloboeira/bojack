@@ -1,9 +1,7 @@
 require "socket"
 require "./memory"
 require "./params"
-require "./commands/set"
-require "./commands/get"
-require "./commands/delete"
+require "./command"
 
 module BoJack
   class Server
@@ -25,29 +23,15 @@ module BoJack
               break unless request
 
               params = Bojack::Params.from(request)
+              bjcommand = Bojack::Command.from(params.command)
 
-              if params.command == "ping"
+              if bjcommand
+                response = bjcommand.execute(memory, params.key, params.value)
+                socket.puts(response)
+              elsif params.command == "ping"
                 socket.puts("pong")
-              elsif params.command == "set"
-                cmd = Bojack::Commands::Set.new()
-                response = cmd.execute(memory, params.key, params.value)
-
-                socket.puts(response)
-              elsif params.command == "get"
-                cmd = Bojack::Commands::Get.new()
-                response = cmd.execute(memory, params.key, params.value)
-
-                socket.puts(response)
-              elsif params.command == "delete"
-                cmd = Bojack::Commands::Delete.new()
-                response = cmd.execute(memory, params.key, params.value)
-
-                socket.puts(response)
-              elsif params.command == "size"
-                socket.puts(memory.size)
               elsif params.command == "close"
                 socket.puts("closing...")
-
                 socket.close
                 break
               else

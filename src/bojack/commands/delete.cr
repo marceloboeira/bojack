@@ -1,5 +1,4 @@
-require "../commands/command"
-require "../memory"
+require "./command"
 
 module Bojack
   module Commands
