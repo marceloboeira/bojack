@@ -33,17 +33,5 @@ module Bojack
         nil
       end
     end
-
-    def self.list_command?(command)
-      ([ Command::LGET,
-         Command::LSET,
-         Command::LDELETE] of String).includes? command
-    end
-
-    def self.value_command?(command)
-      ([ Command::GET,
-         Command::SET,
-         Command::DELETE ] of String).includes? command
-    end
   end
 end
