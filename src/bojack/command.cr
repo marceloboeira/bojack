@@ -1,8 +1,4 @@
-require "./commands/command"
-require "./commands/set"
-require "./commands/get"
-require "./commands/delete"
-require "./commands/size"
+require "./commands/*"
 
 module Bojack
   module Command
@@ -11,19 +7,43 @@ module Bojack
     # It holds the logic to create the command instances
     #
     # @param param_command [String]
+
+    SET = "set"
+    GET = "get"
+    DELETE = "delete"
+    POP = "pop"
+    APPEND = "append"
+    SIZE = "size"
+
     def self.from(param_command) : Bojack::Commands::Command?
       case param_command
-      when "set"
+      when Command::SET
         Bojack::Commands::Set.new
-      when "get"
+      when Command::GET
         Bojack::Commands::Get.new
-      when "delete"
+      when Command::DELETE
         Bojack::Commands::Delete.new
-      when "size"
+      when Command::APPEND
+        Bojack::Commands::Append.new
+      when Command::POP
+        Bojack::Commands::Pop.new
+      when Command::SIZE
         Bojack::Commands::Size.new
       else
         nil
       end
+    end
+
+    def self.list_command?(command)
+      ([ Command::LGET,
+         Command::LSET,
+         Command::LDELETE] of String).includes? command
+    end
+
+    def self.value_command?(command)
+      ([ Command::GET,
+         Command::SET,
+         Command::DELETE ] of String).includes? command
     end
   end
 end
