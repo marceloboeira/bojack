@@ -12,7 +12,7 @@ module Bojack
       # @param memory [Bojack::Memory] to be managed.
       # @param key [String] for memory retrieve.
       # @param value [String] for memory changes.
-      abstract def execute(memory, key : String?, value : String?) : String
+      abstract def execute(memory, key : String?, value : Array(String)) : String | Array(String)
     end
   end
 end

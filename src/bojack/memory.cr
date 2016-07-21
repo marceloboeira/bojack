@@ -31,6 +31,12 @@ module BoJack
       end
     end
 
+    def append(key : K, values : V)
+      data = read(key)
+      data += values
+      write(key, data)
+    end
+
     def size
       @cache.size
     end

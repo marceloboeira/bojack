@@ -30,6 +30,13 @@ describe BoJack::Server do
 
         buffer.should eq("jack\n")
       end
+
+      it "sets key with a list" do
+        socket.puts("set list boo,foo,bar")
+        buffer = socket.gets
+
+        buffer.should eq("[\"boo\", \"foo\", \"bar\"]\n")
+      end
     end
 
     describe "get" do
@@ -40,11 +47,70 @@ describe BoJack::Server do
 
           buffer.should eq("jack\n")
         end
+
+        it "returns a list" do
+          socket.puts("get list")
+          buffer = socket.gets
+
+          buffer.should eq("[\"boo\", \"foo\", \"bar\"]\n")
+        end
       end
 
       context "with an invalid key" do
         it "returns proper error message" do
           socket.puts("get bar")
+          buffer = socket.gets
+
+          buffer.should eq("error: 'bar' is not a valid key\n")
+        end
+      end
+    end
+
+    describe "append" do
+      context "with a valid key" do
+        it "returns the key value" do
+          socket.puts("set list boo,foo,bar")
+          socket.gets
+
+          socket.puts("append list lol")
+          buffer = socket.gets
+
+          buffer.should eq("[\"boo\", \"foo\", \"bar\", \"lol\"]\n")
+
+          socket.puts("delete list")
+          buffer = socket.gets
+        end
+      end
+
+      context "with an invalid key" do
+        it "returns proper error message" do
+          socket.puts("append bar lol")
+          buffer = socket.gets
+
+          buffer.should eq("error: 'bar' is not a valid key\n")
+        end
+      end
+    end
+
+    describe "pop" do
+      context "with a valid key" do
+        it "returns the key value" do
+          socket.puts("set list boo,foo,bar")
+          socket.gets
+
+          socket.puts("pop list")
+          buffer = socket.gets
+
+          buffer.should eq("bar\n")
+
+          socket.puts("delete list")
+          buffer = socket.gets
+        end
+      end
+
+      context "with an invalid key" do
+        it "returns proper error message" do
+          socket.puts("append bar lol")
           buffer = socket.gets
 
           buffer.should eq("error: 'bar' is not a valid key\n")
@@ -71,6 +137,8 @@ describe BoJack::Server do
         end
       end
     end
+
+
 
     describe "size" do
       it "reurns the size of the store" do

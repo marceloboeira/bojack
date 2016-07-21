@@ -2,7 +2,7 @@ module Bojack
   class Params
     @command : String
     @key : String
-    @value : String
+    @value : Array(String)
 
     def initialize(@command, @key, @value)
     end
@@ -41,7 +41,7 @@ module Bojack
       rescue
       end
 
-      Params.new(command, key, value)
+      Params.new(command, key, value.split(","))
     end
   end
 end
