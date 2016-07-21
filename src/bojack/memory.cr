@@ -33,7 +33,7 @@ module BoJack
 
     def append(key : K, values : V)
       data = read(key)
-      values.each{ |v| data << v }
+      data += values
       write(key, data)
     end
 
