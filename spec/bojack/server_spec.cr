@@ -47,6 +47,13 @@ describe BoJack::Server do
 
           buffer.should eq("jack\n")
         end
+
+        it "returns a list" do
+          socket.puts("get list")
+          buffer = socket.gets
+
+          buffer.should eq("[\"boo\", \"foo\", \"bar\"]\n")
+        end
       end
 
       context "with an invalid key" do

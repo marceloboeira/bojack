@@ -6,7 +6,13 @@ module Bojack
       self.keyword = "get"
 
       def execute(memory, key, value)
-        memory.read(key)[0]
+        data = memory.read(key)
+
+        if data.size == 1
+          data.first
+        else
+          data
+        end
       rescue
         "error: '#{key}' is not a valid key"
       end
