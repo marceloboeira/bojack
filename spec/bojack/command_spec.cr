@@ -22,6 +22,18 @@ describe "BoJack::Command" do
     end
   end
 
+  context "when receive pop" do
+    it "returns a Pop command" do
+      (Bojack::Command.from("pop")).should be_a(Bojack::Commands::Pop)
+    end
+  end
+
+  context "when receive append" do
+    it "returns a Append command" do
+      (Bojack::Command.from("append")).should be_a(Bojack::Commands::Append)
+    end
+  end
+
   context "when receive size" do
     it "returns a Size command" do
       (Bojack::Command.from("size")).should be_a(Bojack::Commands::Size)
