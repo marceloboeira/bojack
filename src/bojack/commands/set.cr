@@ -9,10 +9,10 @@ module Bojack
         data = memory.write(key, value)
 
         if data.size == 1
-          return data.first
+          data.first
+        else
+          data
         end
-
-        data
       end
     end
   end
