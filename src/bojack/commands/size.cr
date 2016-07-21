@@ -5,7 +5,7 @@ module Bojack
     class Size < Command
       self.keyword = "size"
 
-      def execute(memory, key : String?, value : String?) : String
+      def execute(memory, key, value)
         "#{memory.size}"
       end
     end

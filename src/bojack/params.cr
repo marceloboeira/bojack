@@ -2,7 +2,7 @@ module Bojack
   class Params
     @command : String
     @key : String
-    @value : String
+    @value : Array(String)
     getter :command, :key, :value
 
     def initialize(@command, @key, @value); end
@@ -18,7 +18,7 @@ module Bojack
       key = request[1] if request[1]?
       value = request[2] if request[2]?
 
-      Params.new(command, key, value)
+      Params.new(command, key, value.split(","))
     end
   end
 end

@@ -1,8 +1,4 @@
-require "./commands/command"
-require "./commands/set"
-require "./commands/get"
-require "./commands/delete"
-require "./commands/size"
+require "./commands/*"
 
 module Bojack
   module Command
@@ -11,6 +7,8 @@ module Bojack
       Bojack::Commands::Set,
       Bojack::Commands::Delete,
       Bojack::Commands::Size,
+      Bojack::Commands::Append,
+      Bojack::Commands::Pop,
     ]
 
     # Factory method for Bojack Commands

@@ -5,8 +5,14 @@ module Bojack
     class Set < Command
       self.keyword = "set"
 
-      def execute(memory, key : String?, value : String?) : String
-        memory.write(key, value)
+      def execute(memory, key, value)
+        data = memory.write(key, value)
+
+        if data.size == 1
+          return data.first
+        end
+
+        data
       end
     end
   end

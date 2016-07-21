@@ -2,11 +2,11 @@ require "./command"
 
 module Bojack
   module Commands
-    class Get < Command
-      self.keyword = "get"
+    class Pop < Command
+      self.keyword = "pop"
 
       def execute(memory, key, value)
-        memory.read(key)[0]
+        memory.read(key).pop
       rescue
         "error: '#{key}' is not a valid key"
       end

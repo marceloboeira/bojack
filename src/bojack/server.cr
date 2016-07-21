@@ -13,7 +13,7 @@ module BoJack
     def start
       server = TCPServer.new(@hostname, @port)
       server.recv_buffer_size = 4096
-      memory = BoJack::Memory(String, String).new
+      memory = BoJack::Memory(String, Array(String)).new
 
       loop do
         if socket = server.accept
