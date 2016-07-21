@@ -27,6 +27,8 @@
 |set| sets a key with the given name and value  | key, value  | `set foo bar`  | the value of the key "bar"  |
 |get| gets the value of the given value  | key | `get foo` | the value stored at the key, "bar" |
 |delete| deletes the given key | key | `delete foo` | the value at the deleted key "bar"  |
+|append| add one or more values to the end of a list | key, value  | `append list foo,bar`  | the list resulted |
+|pop| retrieve the last item of the list | key | `pop foo` | the last value stored at the list, "foo" |
 |size| return the number of stored items | -- | `size` | the value of stored keys in memory |
 |ping| checks the server | --  | `ping` | pong if everything is correct |
 
