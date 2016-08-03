@@ -4,7 +4,7 @@ PREFIX ?= /usr/local
 
 build:
 	$(CRYSTAL_BIN) deps
-	$(CRYSTAL_BIN) compile --release -o bin/bojack src/bojack/cli.cr $(CRFLAGS)
+	$(CRYSTAL_BIN) build --release -o bin/bojack src/bojack/cli.cr $(CRFLAGS)
 
 clean:
 	rm -f ./bin/bojack
