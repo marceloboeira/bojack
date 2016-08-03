@@ -14,20 +14,9 @@ module Bojack
       key = ""
       value = ""
 
-      begin
-        command = request[0]
-      rescue
-      end
-
-      begin
-        key = request[1]
-      rescue
-      end
-
-      begin
-        value = request[2]
-      rescue
-      end
+      command = request[0] if request[0]?
+      key = request[1] if request[1]?
+      value = request[2] if request[2]?
 
       Params.new(command, key, value)
     end
