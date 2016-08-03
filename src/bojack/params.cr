@@ -3,21 +3,9 @@ module Bojack
     @command : String
     @key : String
     @value : String
+    getter :command, :key, :value
 
-    def initialize(@command, @key, @value)
-    end
-
-    def command
-      @command
-    end
-
-    def key
-      @key
-    end
-
-    def value
-      @value
-    end
+    def initialize(@command, @key, @value); end
 
     def self.from(request : String)
       request = request.split(" ").map { |item| item.strip }
