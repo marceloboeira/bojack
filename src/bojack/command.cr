@@ -6,24 +6,26 @@ require "./commands/size"
 
 module Bojack
   module Command
+    REGISTRY = [
+      Bojack::Commands::Get,
+      Bojack::Commands::Set,
+      Bojack::Commands::Delete,
+      Bojack::Commands::Size,
+    ]
+
     # Factory method for Bojack Commands
     #
     # It holds the logic to create the command instances
     #
-    # @param param_command [String]
-    def self.from(param_command) : Bojack::Commands::Command?
-      case param_command
-      when "set"
-        Bojack::Commands::Set.new
-      when "get"
-        Bojack::Commands::Get.new
-      when "delete"
-        Bojack::Commands::Delete.new
-      when "size"
-        Bojack::Commands::Size.new
-      else
-        nil
+    # @param command [String]
+    def self.from(keyword) : Bojack::Commands::Command?
+      clazz = REGISTRY.find(nil) do |clazz|
+        clazz.keyword == keyword
       end
+
+      return clazz.new if clazz
+
+      nil
     end
   end
 end

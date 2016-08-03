@@ -3,6 +3,8 @@ require "./command"
 module Bojack
   module Commands
     class Get < Command
+      self.keyword = "get"
+
       def execute(memory, key : String?, value : String?) : String
         memory.read(key)
       rescue
