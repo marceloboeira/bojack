@@ -34,4 +34,4 @@
 
 ## Contributing
 
-Want to contribute? Make sure you follow the [guide](CONTRIBUTE.md).
+Want to contribute? Make sure you follow the [guide](CONTRIBUTING.md).
