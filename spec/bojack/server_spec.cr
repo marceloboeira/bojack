@@ -116,6 +116,25 @@ describe BoJack::Server do
           buffer.should eq("error: 'bar' is not a valid key\n")
         end
       end
+
+      context "with no more items to pop" do
+        it "returns empty response" do
+          socket.puts("set list foo,bar")
+          socket.gets
+
+          socket.puts("pop list")
+          socket.gets
+          socket.puts("pop list")
+          socket.gets
+          socket.puts("pop list")
+
+          buffer = socket.gets
+          
+          buffer.should eq("\n")
+          socket.puts("delete list")
+          socket.gets
+        end
+      end
     end
 
     describe "delete" do

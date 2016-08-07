@@ -6,7 +6,10 @@ module Bojack
       self.keyword = "pop"
 
       def execute(memory, key, value)
-        memory.read(key).pop
+        list = memory.read(key)
+        
+        return nil if list.empty?
+        list.pop
       rescue
         "error: '#{key}' is not a valid key"
       end
