@@ -5,10 +5,10 @@ module BoJack
     class Append < BoJack::Commands::Command
       self.keyword = "append"
 
-      def execute(memory, key, value)
-        memory.append(key, value)
+      def execute(memory, params)
+        memory.append(params.key, params.value)
       rescue ex
-        "error: '#{key}' is not a valid key"
+        "error: '#{params.key}' is not a valid key"
       end
     end
   end

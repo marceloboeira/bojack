@@ -26,7 +26,7 @@ module BoJack
               bjcommand = BoJack::Command.from(params.command)
 
               if bjcommand
-                response = bjcommand.execute(memory, params.key, params.value)
+                response = bjcommand.execute(memory, params)
                 socket.puts(response)
               elsif params.command == "ping"
                 socket.puts("pong")

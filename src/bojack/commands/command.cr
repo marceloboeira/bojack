@@ -12,9 +12,8 @@ module BoJack
       # Implements the process for command.
       #
       # @param memory [BoJack::Memory] to be managed.
-      # @param key [String] for memory retrieve.
-      # @param value [String] for memory changes.
-      abstract def execute(memory, key : String?, value : Array(String)) : String | Array(String)
+      # @param params [BoJack::Params] for params.
+      abstract def execute(memory, params : BoJack::Params) : String | Array(String)
 
       private def self.keyword=(value : String)
         @@keyword = value

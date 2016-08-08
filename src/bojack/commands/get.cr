@@ -5,8 +5,8 @@ module BoJack
     class Get < BoJack::Commands::Command
       self.keyword = "get"
 
-      def execute(memory, key, value)
-        data = memory.read(key)
+      def execute(memory, params)
+        data = memory.read(params.key)
 
         if data.size == 1
           data.first
@@ -14,7 +14,7 @@ module BoJack
           data
         end
       rescue
-        "error: '#{key}' is not a valid key"
+        "error: '#{params.key}' is not a valid key"
       end
     end
   end
