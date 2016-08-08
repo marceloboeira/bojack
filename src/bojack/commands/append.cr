@@ -1,8 +1,8 @@
 require "./command"
 
-module Bojack
+module BoJack
   module Commands
-    class Append < Command
+    class Append < BoJack::Commands::Command
       self.keyword = "append"
 
       def execute(memory, key, value)

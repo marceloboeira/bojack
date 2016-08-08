@@ -1,8 +1,8 @@
 require "./command"
 
-module Bojack
+module BoJack
   module Commands
-    class Get < Command
+    class Get < BoJack::Commands::Command
       self.keyword = "get"
 
       def execute(memory, key, value)

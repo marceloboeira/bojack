@@ -1,22 +1,22 @@
 require "./commands/*"
 
-module Bojack
+module BoJack
   module Command
     REGISTRY = [
-      Bojack::Commands::Get,
-      Bojack::Commands::Set,
-      Bojack::Commands::Delete,
-      Bojack::Commands::Size,
-      Bojack::Commands::Append,
-      Bojack::Commands::Pop,
+      BoJack::Commands::Get,
+      BoJack::Commands::Set,
+      BoJack::Commands::Delete,
+      BoJack::Commands::Size,
+      BoJack::Commands::Append,
+      BoJack::Commands::Pop,
     ]
 
-    # Factory method for Bojack Commands
+    # Factory method for BoJack Commands
     #
     # It holds the logic to create the command instances
     #
     # @param command [String]
-    def self.from(keyword) : Bojack::Commands::Command?
+    def self.from(keyword) : BoJack::Commands::Command?
       clazz = REGISTRY.find(nil) do |clazz|
         clazz.keyword == keyword
       end

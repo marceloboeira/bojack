@@ -22,8 +22,8 @@ module BoJack
               request = socket.gets
               break unless request
 
-              params = Bojack::Params.from(request)
-              bjcommand = Bojack::Command.from(params.command)
+              params = BoJack::Params.from(request)
+              bjcommand = BoJack::Command.from(params.command)
 
               if bjcommand
                 response = bjcommand.execute(memory, params.key, params.value)

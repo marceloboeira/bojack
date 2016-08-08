@@ -1,8 +1,8 @@
 require "../memory"
 
-module Bojack
+module BoJack
   module Commands
-    # Represents a Bojack command
+    # Represents a BoJack command
     #
     abstract class Command
       @@keyword : String = "none"
@@ -11,7 +11,7 @@ module Bojack
       #
       # Implements the process for command.
       #
-      # @param memory [Bojack::Memory] to be managed.
+      # @param memory [BoJack::Memory] to be managed.
       # @param key [String] for memory retrieve.
       # @param value [String] for memory changes.
       abstract def execute(memory, key : String?, value : Array(String)) : String | Array(String)

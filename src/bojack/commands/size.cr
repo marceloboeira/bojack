@@ -1,8 +1,8 @@
 require "./command"
 
-module Bojack
+module BoJack
   module Commands
-    class Size < Command
+    class Size < BoJack::Commands::Command
       self.keyword = "size"
 
       def execute(memory, key, value)

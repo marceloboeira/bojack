@@ -1,8 +1,8 @@
 require "./command"
 
-module Bojack
+module BoJack
   module Commands
-    class Set < Command
+    class Set < BoJack::Commands::Command
       self.keyword = "set"
 
       def execute(memory, key, value)

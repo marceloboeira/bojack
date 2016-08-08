@@ -1,8 +1,8 @@
 require "./command"
 
-module Bojack
+module BoJack
   module Commands
-    class Delete < Command
+    class Delete < BoJack::Commands::Command
       self.keyword = "delete"
 
       def execute(memory, key : String?, value : Array(String))

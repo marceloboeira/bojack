@@ -1,4 +1,4 @@
-module Bojack
+module BoJack
   class Params
     @command : String
     @key : String
