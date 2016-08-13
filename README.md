@@ -18,7 +18,17 @@
 ## Showtime
 
 1. Run: `bojack server -p 5000`
-2. Run: `telnet 127.0.0.1 5000`
+2. Run: `bojack client -p 5000`
+
+```
+$ bojack client -p 5000
+> set foo bar
+bar
+> get foo
+bar
+> ping
+pong
+```
 
 ## Usage
 
