@@ -18,7 +18,7 @@ module BoJack
     def read(key : K) : V?
       if entry = @cache[key]?
         entry.value
-      else 
+      else
         raise "#{key.to_s} is not a valid key"
       end
     end
@@ -26,7 +26,7 @@ module BoJack
     def delete(key : K) : V?
       if entry = @cache.delete(key)
         entry.value
-      else 
+      else
         raise "#{key.to_s} is not a valid key"
       end
     end
@@ -39,6 +39,10 @@ module BoJack
 
     def size
       @cache.size
+    end
+
+    def reset
+      @cache = {} of K => Entry(V)
     end
 
     private def read_entry(key : K) : Entry(V)?

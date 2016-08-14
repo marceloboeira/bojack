@@ -6,7 +6,11 @@ module BoJack
       def execute(memory, params)
         key = params[0]
 
-        memory.delete(key).first
+        if key == "*"
+          memory.reset
+        else
+          memory.delete(key).first
+        end
       rescue
         "error: '#{key}' is not a valid key"
       end

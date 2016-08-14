@@ -148,9 +148,16 @@ describe BoJack::Server do
           buffer.should eq("error: 'bar' is not a valid key\n")
         end
       end
+
+      context "with a *" do
+        it "returns {}" do
+          socket.puts("delete *")
+          buffer = socket.gets
+
+          buffer.should eq("{}\n")
+        end
+      end
     end
-
-
 
     describe "size" do
       it "reurns the size of the store" do

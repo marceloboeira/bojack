@@ -57,6 +57,13 @@ describe BoJack::Memory do
     end 
   end
 
+  context "when reseting" do
+    it "deletes every key" do
+      memory.reset
+      memory.size.should eq(0)
+    end
+  end
+
   context "when checking size" do
     it "returns the number of items" do
       memory.size.should eq(2)
