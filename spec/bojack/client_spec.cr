@@ -1,19 +1,10 @@
 require "../spec_helper"
-require "../../src/bojack/server"
 require "../../src/bojack/client"
-require "socket"
 
 describe BoJack::Client do
-  # TODO: share the same server instance
   hostname = "127.0.0.1"
-  port = 5001
+  port = 5000
 
-  spawn do
-    BoJack::Server.new(hostname, port).start
-  end
-
-  # ensure the server has started before connection attempt
-  sleep 0.1
   client = BoJack::Client.new(hostname, port)
 
   describe "ping" do

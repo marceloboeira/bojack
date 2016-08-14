@@ -6,13 +6,6 @@ describe BoJack::Server do
   hostname = "127.0.0.1"
   port = 5000
 
-  spawn do
-    BoJack::Server.new(hostname, port).start
-  end
-
-  # ensure the server has started before connection attempt
-  sleep 0.1
-
   TCPSocket.open(hostname, port) do |socket|
     describe "ping" do
       it "returns pong" do
