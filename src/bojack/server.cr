@@ -23,19 +23,19 @@ module BoJack
               break unless request
 
               params = BoJack::Params.from(request)
-              bjcommand = BoJack::Command.from(params.command)
+              bjcommand = BoJack::Command.from(params[:command])
 
               if bjcommand
-                response = bjcommand.execute(memory, params)
+                response = bjcommand.execute(memory, params[:params])
                 socket.puts(response)
-              elsif params.command == "ping"
+              elsif params[:command] == "ping"
                 socket.puts("pong")
-              elsif params.command == "close"
+              elsif params[:command] == "close"
                 socket.puts("closing...")
                 socket.close
                 break
               else
-                socket.puts("error: '#{params.command}' is not a valid command")
+                socket.puts("error: '#{params[:command]}' is not a valid command")
               end
             end
           end

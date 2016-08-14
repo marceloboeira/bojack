@@ -4,12 +4,13 @@ module BoJack
   module Commands
     class Pop < BoJack::Commands::Command
       def execute(memory, params)
-        list = memory.read(params.key)
+        key = params[0]
+        list = memory.read(key)
         
         return nil if list.empty?
         list.pop
       rescue
-        "error: '#{params.key}' is not a valid key"
+        "error: '#{key}' is not a valid key"
       end
     end
   end

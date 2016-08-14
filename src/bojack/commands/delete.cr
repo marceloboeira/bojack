@@ -4,9 +4,11 @@ module BoJack
   module Commands
     class Delete < BoJack::Commands::Command
       def execute(memory, params)
-        memory.delete(params.key).first
+        key = params[0]
+
+        memory.delete(key).first
       rescue
-        "error: '#{params.key}' is not a valid key"
+        "error: '#{key}' is not a valid key"
       end
     end
   end

@@ -18,6 +18,7 @@ module BoJack
     # @param command [String]
     def self.from(keyword) : BoJack::Commands::Command?
       return COMMANDS[keyword].new if COMMANDS.has_key?(keyword)
+
       nil
     end
   end

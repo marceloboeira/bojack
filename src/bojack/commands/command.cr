@@ -13,7 +13,7 @@ module BoJack
       #
       # @param memory [BoJack::Memory] to be managed.
       # @param params [BoJack::Params] for params.
-      abstract def execute(memory, params : BoJack::Params) : String | Array(String)
+      abstract def execute(memory, params : Array(String)) : String | Array(String)
 
       private def self.keyword=(value : String)
         @@keyword = value
