@@ -3,8 +3,6 @@ require "./command"
 module BoJack
   module Commands
     class Set < BoJack::Commands::Command
-      self.keyword = "set"
-
       def execute(memory, params)
         data = memory.write(params.key, params.value)
 

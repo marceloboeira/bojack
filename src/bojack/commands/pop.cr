@@ -3,8 +3,6 @@ require "./command"
 module BoJack
   module Commands
     class Pop < BoJack::Commands::Command
-      self.keyword = "pop"
-
       def execute(memory, params)
         list = memory.read(params.key)
         

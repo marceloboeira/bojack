@@ -3,8 +3,6 @@ require "./command"
 module BoJack
   module Commands
     class Get < BoJack::Commands::Command
-      self.keyword = "get"
-
       def execute(memory, params)
         data = memory.read(params.key)
 
