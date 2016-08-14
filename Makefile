@@ -12,6 +12,8 @@ clean:
 test: build
 	$(CRYSTAL_BIN) spec
 
+spec: test
+
 install: build
 	mkdir -p $(PREFIX)/bin
 	cp ./bin/bojack $(PREFIX)/bin
