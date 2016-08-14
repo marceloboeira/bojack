@@ -9,6 +9,7 @@ module BoJack
       "pop"    => BoJack::Commands::Pop,
       "set"    => BoJack::Commands::Set,
       "size"   => BoJack::Commands::Size,
+      "ping"    => BoJack::Commands::Ping,
     }
 
     # Factory method for BoJack Commands

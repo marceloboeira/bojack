@@ -6,7 +6,7 @@ module BoJack
       def execute(memory, params)
         key = params[0]
         list = memory.read(key)
-        
+
         return nil if list.empty?
         list.pop
       rescue

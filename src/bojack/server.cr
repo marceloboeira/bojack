@@ -23,13 +23,11 @@ module BoJack
               break unless request
 
               params = BoJack::Params.from(request)
-              bjcommand = BoJack::Command.from(params[:command])
+              command = BoJack::Command.from(params[:command])
 
-              if bjcommand
-                response = bjcommand.execute(memory, params[:params])
+              if command
+                response = command.execute(memory, params[:params])
                 socket.puts(response)
-              elsif params[:command] == "ping"
-                socket.puts("pong")
               elsif params[:command] == "close"
                 socket.puts("closing...")
                 socket.close
