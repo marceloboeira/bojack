@@ -2,14 +2,14 @@ require "./commands/*"
 
 module BoJack
   module Command
-    REGISTRY = [
-      BoJack::Commands::Get,
-      BoJack::Commands::Set,
-      BoJack::Commands::Delete,
-      BoJack::Commands::Size,
-      BoJack::Commands::Append,
-      BoJack::Commands::Pop,
-    ]
+    COMMANDS = {
+      "append" => BoJack::Commands::Append,
+      "delete" => BoJack::Commands::Delete,
+      "get"    => BoJack::Commands::Get,
+      "pop"    => BoJack::Commands::Pop,
+      "set"    => BoJack::Commands::Set,
+      "size"   => BoJack::Commands::Size,
+    }
 
     # Factory method for BoJack Commands
     #
@@ -17,12 +17,7 @@ module BoJack
     #
     # @param command [String]
     def self.from(keyword) : BoJack::Commands::Command?
-      clazz = REGISTRY.find(nil) do |clazz|
-        clazz.keyword == keyword
-      end
-
-      return clazz.new if clazz
-
+      return COMMANDS[keyword].new if COMMANDS.has_key?(keyword)
       nil
     end
   end
