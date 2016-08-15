@@ -1,7 +1,6 @@
 require "socket"
 require "logger"
 require "./memory"
-require "./params"
 require "./command"
 
 module BoJack
@@ -31,11 +30,11 @@ module BoJack
 
               @logger.info("#{socket.remote_address} requested: #{request.dump}")
 
-              params = BoJack::Params.from(request)
+              params = parse_request(request)
               command = BoJack::Command.from(params[:command])
 
               if command
-                response = command.execute(memory, params[:params])
+                response = command.execute(memory, params)
                 socket.puts(response)
               elsif params[:command] == "close"
                 socket.puts("closing...")
@@ -50,6 +49,19 @@ module BoJack
           end
         end
       end
+    end
+
+    private def parse_request(request) : Hash(Symbol, String | Array(String))
+      request = request.split(" ").map { |item| item.strip }
+
+      command = request[0]
+      result = Hash(Symbol, String | Array(String)).new
+      result[:command] = command
+
+      result[:key] = request[1] if request[1]?
+      result[:value] = request[2].split(",") if request[2]?
+
+      result
     end
   end
 end

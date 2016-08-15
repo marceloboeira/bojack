@@ -1,6 +1,5 @@
 require "readline"
 require "./client"
-require "./params"
 require "./command"
 
 module BoJack

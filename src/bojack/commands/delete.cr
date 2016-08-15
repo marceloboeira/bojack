@@ -4,7 +4,7 @@ module BoJack
   module Commands
     class Delete < BoJack::Commands::Command
       def execute(memory, params)
-        key = params[0]
+        key = params[:key].to_s
 
         if key == "*"
           memory.reset

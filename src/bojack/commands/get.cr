@@ -4,7 +4,7 @@ module BoJack
   module Commands
     class Get < BoJack::Commands::Command
       def execute(memory, params)
-        key = params[0]
+        key = params[:key].to_s
         data = memory.read(key)
 
         if data.size == 1

@@ -4,7 +4,7 @@ module BoJack
   module Commands
     class Pop < BoJack::Commands::Command
       def execute(memory, params)
-        key = params[0]
+        key = params[:key].to_s
         list = memory.read(key)
 
         return nil if list.empty?

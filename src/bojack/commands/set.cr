@@ -4,8 +4,9 @@ module BoJack
   module Commands
     class Set < BoJack::Commands::Command
       def execute(memory, params)
-        key = params[0]
-        value = params[1].split(",")
+        key = params[:key].to_s
+        value = params[:value]
+        value = [value] if value.is_a?(String)
 
         data = memory.write(key, value)
 
