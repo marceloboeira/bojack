@@ -8,9 +8,7 @@ module BoJack
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
 
-    def initialize(@hostname = "127.0.0.1", @port = 5000)
-      @logger = Logger.new(STDOUT)
-    end
+    def initialize(@hostname = "127.0.0.1", @port = 5000, @logger = Logger.new(STDOUT)); end
 
     def start
       server = TCPServer.new(@hostname, @port)
