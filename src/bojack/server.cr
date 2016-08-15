@@ -26,7 +26,7 @@ module BoJack
               request = socket.gets
               break unless request
 
-              @logger.info("#{socket.remote_address} requested: #{request.dump}")
+              @logger.info("#{socket.remote_address} requested: #{request.strip}")
 
               params = parse_request(request)
               command = BoJack::Command.from(params[:command])
