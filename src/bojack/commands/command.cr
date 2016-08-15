@@ -2,17 +2,9 @@ require "../memory"
 
 module BoJack
   module Commands
-    # Represents a BoJack command
-    #
     abstract class Command
       @@keyword : String = "none"
 
-      # Execute method
-      #
-      # Implements the process for command.
-      #
-      # @param memory [BoJack::Memory] to be managed.
-      # @param params [BoJack::Params] for params.
       abstract def execute(memory, params : Array(String)) : String | Array(String)
 
       private def self.keyword=(value : String)

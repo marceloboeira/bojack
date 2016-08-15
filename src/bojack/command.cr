@@ -12,11 +12,6 @@ module BoJack
       "ping"    => BoJack::Commands::Ping,
     }
 
-    # Factory method for BoJack Commands
-    #
-    # It holds the logic to create the command instances
-    #
-    # @param command [String]
     def self.from(keyword) : BoJack::Commands::Command?
       return COMMANDS[keyword].new if COMMANDS.has_key?(keyword)
 
