@@ -44,4 +44,6 @@ pong
 
 ## Contributing
 
+Found a bug? Have a suggestion? Please [open an issue](https://github.com/marceloboeira/bojack/issues/new).
+
 Want to contribute? Make sure you follow the [guide](CONTRIBUTING.md).
