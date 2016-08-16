@@ -1,5 +1,5 @@
 <img src="https://raw.githubusercontent.com/marceloboeira/bojack/master/docs/bojack.png" width="250" align="right">
-# BoJack [![Travis](https://img.shields.io/travis/marceloboeira/bojack.svg?maxAge=2592000)](https://travis-ci.org/marceloboeira/bojack) [![Stories in Ready](https://img.shields.io/waffle/label/marceloboeira/bojack/ready.svg?maxAge=2592000)](http://waffle.io/marceloboeira/bojack)
+# BoJack [![Travis](https://img.shields.io/travis/marceloboeira/bojack.svg?maxAge=2592000)](https://travis-ci.org/marceloboeira/bojack) [![Stories in Ready](https://img.shields.io/waffle/label/marceloboeira/bojack/ready.svg?maxAge=2592000)](http://waffle.io/marceloboeira/bojack) [![Releases](https://img.shields.io/github/release/marceloboeira/bojack.svg?maxAge=259000)](http://github.com/marceloboeira/bojack/releases)
 > A non-reliable in-memory key-value store.
 
 ## Installation
