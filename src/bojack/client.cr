@@ -7,6 +7,7 @@ module BoJack
 
     def initialize(@hostname = "127.0.0.1", @port = 5000)
       @socket = TCPSocket.new(@hostname, @port)
+      @socket.tcp_nodelay = true
     end
 
     def set(key, value)
