@@ -12,6 +12,7 @@ module BoJack
 
     def start
       server = TCPServer.new(@hostname, @port)
+      server.tcp_nodelay = true
       server.recv_buffer_size = 4096
       memory = BoJack::Memory(String, Array(String)).new
 
