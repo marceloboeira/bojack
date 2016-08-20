@@ -10,7 +10,7 @@ clean:
 	rm -f ./bin/bojack
 
 test: build
-	$(CRYSTAL_BIN) spec
+	$(CRYSTAL_BIN) spec --verbose
 
 spec: test
 
