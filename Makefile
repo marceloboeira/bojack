@@ -19,4 +19,4 @@ install: build
 	cp ./bin/bojack $(PREFIX)/bin
 
 reinstall: build
-	cp ./bin/bojack $(BOJACK_BIN) -rf
+	cp -rf ./bin/bojack $(BOJACK_BIN)
