@@ -32,6 +32,53 @@ describe BoJack::Server do
       end
     end
 
+    describe "increment" do
+      describe "with valid params" do
+        it "increments the key value by 1" do
+          socket.puts("set counter 10")
+          buffer = socket.gets
+
+          socket.puts("increment counter")
+          buffer = socket.gets
+
+          buffer.should eq("11\n")
+        end
+      end
+
+      describe "with an invalid key" do
+        describe "when the key does not exists" do
+          socket.puts("increment invalid_counter")
+          buffer = socket.gets
+
+          buffer.should eq("error: 'invalid_counter' is not a valid key\n")
+        end
+
+        describe "when the key is an array" do
+          it "raises proper error" do
+            socket.puts("set counter a,b,c")
+            buffer = socket.gets
+
+            socket.puts("increment counter")
+            buffer = socket.gets
+
+            buffer.should eq("error: 'counter' cannot be incremented\n")
+          end
+        end
+
+        describe "when the key is a string" do
+          it "raises proper error" do
+            socket.puts("set counter a")
+            buffer = socket.gets
+
+            socket.puts("increment counter")
+            buffer = socket.gets
+
+            buffer.should eq("error: 'counter' cannot be incremented\n")
+          end
+        end
+      end
+    end
+
     describe "get" do
       context "with a valid key" do
         it "returns the key value" do
@@ -122,7 +169,7 @@ describe BoJack::Server do
           socket.puts("pop list")
 
           buffer = socket.gets
-          
+
           buffer.should eq("\n")
           socket.puts("delete list")
           socket.gets

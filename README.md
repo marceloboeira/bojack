@@ -35,6 +35,7 @@ pong
 |command|description|params|example|return|
 |---|---|---|---|---|---|
 |set| sets a key with the given name and value  | key, value  | `set foo bar`  | the value of the key "bar"  |
+|increment| increments the given key value by 1| key | `increment foo`  | the value of the key "foo" incremented |
 |get| gets the value of the given value  | key | `get foo` | the value stored at the key, "bar" |
 |delete| deletes the given key | key, * | `delete foo, delete *` | the value at the deleted key "bar" or every key in the database, if "*" is given instead of a key  |
 |append| add one or more values to the end of a list | key, value  | `append list foo,bar`  | the list resulted |

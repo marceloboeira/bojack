@@ -10,6 +10,12 @@ describe "BoJack::Command" do
     end
   end
 
+  context "when receives 'increment'" do
+    it "returns a Increment command" do
+      (BoJack::Command.from("increment")).should be_a(BoJack::Commands::Increment)
+    end
+  end
+
   context "when receives 'get'" do
     it "returns a Get command" do
       (BoJack::Command.from("get")).should be_a(BoJack::Commands::Get)

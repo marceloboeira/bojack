@@ -14,6 +14,10 @@ module BoJack
       execute("set #{key} #{value}")
     end
 
+    def increment(key)
+      execute("increment #{key}")
+    end
+
     def get(key)
       execute("get #{key}")
     end
