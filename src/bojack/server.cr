@@ -45,7 +45,9 @@ module BoJack
 
                 socket.puts(response)
               rescue e
-                socket.puts("error: #{e.message}")
+                message = "error: #{e.message}"
+                @logger.error(message)
+                socket.puts(message)
               end
             end
           end
