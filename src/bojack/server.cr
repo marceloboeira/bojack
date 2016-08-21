@@ -37,7 +37,7 @@ module BoJack
               command = BoJack::Command.from(params[:command])
 
               if command
-                response = command.execute(memory, params)
+                response = command.run(memory, params)
                 socket.puts(response)
               elsif params[:command] == "close"
                 socket.puts("closing...")

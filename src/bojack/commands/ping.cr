@@ -3,7 +3,9 @@ require "./command"
 module BoJack
   module Commands
     class Ping < BoJack::Commands::Command
-      def execute(memory, params)
+      def validate; end
+
+      def perform(memory, params)
         "pong"
       end
     end

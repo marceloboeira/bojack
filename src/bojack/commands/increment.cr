@@ -3,7 +3,11 @@ require "./command"
 module BoJack
   module Commands
     class Increment < BoJack::Commands::Command
-      def execute(memory, params)
+      def validate
+        required(:key)
+      end
+
+      def perform(memory, params)
         key = params[:key].to_s
         data = memory.read(key)
 
