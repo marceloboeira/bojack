@@ -11,42 +11,42 @@ module BoJack
     end
 
     def set(key, value)
-      execute("set #{key} #{value}")
+      send("set #{key} #{value}")
     end
 
     def increment(key)
-      execute("increment #{key}")
+      send("increment #{key}")
     end
 
     def get(key)
-      execute("get #{key}")
+      send("get #{key}")
     end
 
     def append(key, value)
-      execute("append #{key} #{value}")
+      send("append #{key} #{value}")
     end
 
     def pop(key)
-      execute("pop #{key}")
+      send("pop #{key}")
     end
 
     def delete(key)
-      execute("delete #{key}")
+      send("delete #{key}")
     end
 
     def ping
-      execute("ping")
+      send("ping")
     end
 
     def size
-      execute("size")
+      send("size")
     end
 
     def close
-      execute("close")
+      send("close")
     end
 
-    def execute(raw)
+    def send(raw)
       @socket.puts(raw)
       @socket.gets
     end

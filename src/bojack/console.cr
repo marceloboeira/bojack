@@ -14,7 +14,7 @@ module BoJack
     def start
       loop do
         input = Readline.readline("> ", true)
-        puts @client.execute(input)
+        puts @client.send(input)
         break if input == "close"
       end
     end
