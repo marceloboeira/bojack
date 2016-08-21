@@ -8,7 +8,7 @@ describe BoJack::Commands::Increment do
     it "increments a given key" do
       memory.write("counter", ["10"])
 
-      BoJack::Commands::Increment.new.perform(memory, { key: "counter" })
+      BoJack::Commands::Increment.new.perform([0], memory, { key: "counter" })
 
       memory.read("counter").first.should eq("11")
     end

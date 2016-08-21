@@ -2,6 +2,8 @@ require "./commands/*"
 
 module BoJack
   module Command
+    class InvalidCommand < Exception; end
+
     COMMANDS = {
       "append" => BoJack::Commands::Append,
       "delete" => BoJack::Commands::Delete,
@@ -11,12 +13,13 @@ module BoJack
       "set" => BoJack::Commands::Set,
       "size" => BoJack::Commands::Size,
       "ping" => BoJack::Commands::Ping,
+      "close" => BoJack::Commands::Close,
     }
 
-    def self.from(keyword) : BoJack::Commands::Command?
-      return COMMANDS[keyword].new if COMMANDS.has_key?(keyword)
+    def self.from(keyword) : BoJack::Commands::Command
+      raise BoJack::Command::InvalidCommand.new("'#{keyword}' is not a valid command") unless COMMANDS.has_key?(keyword)
 
-      nil
+      COMMANDS[keyword].new
     end
   end
 end

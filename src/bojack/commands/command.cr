@@ -6,14 +6,14 @@ module BoJack
         @params = Hash(Symbol, String | Array(String)).new
       end
 
-      def run(memory, params : Hash(Symbol, String | Array(String)))
+      def run(socket, memory, params : Hash(Symbol, String | Array(String)))
         @params = params
         validate
 
-        perform(memory, params)
+        perform(socket, memory, params)
       end
 
-      private abstract def perform(memory, params : Hash(Symbol, String | Array(String))) : String | Array(String)
+      private abstract def perform(socket, memory, params : Hash(Symbol, String | Array(String))) : String | Array(String)
 
       private def validate; end
 

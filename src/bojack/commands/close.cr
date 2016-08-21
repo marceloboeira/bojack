@@ -2,11 +2,13 @@ require "./command"
 
 module BoJack
   module Commands
-    class Size < BoJack::Commands::Command
+    class Close < BoJack::Commands::Command
       def validate; end
 
       def perform(socket, memory, params)
-        "#{memory.size}"
+        socket.close
+
+        "closing..."
       end
     end
   end

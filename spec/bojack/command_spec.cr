@@ -52,9 +52,17 @@ describe "BoJack::Command" do
     end
   end
 
-  context "when receive unkowncommand" do
-    it "returns a nil" do
-      (BoJack::Command.from("unknowncommand")).should be_nil
+  context "when receives 'close'" do
+    it "returns a Close command" do
+      (BoJack::Command.from("close")).should be_a(BoJack::Commands::Close)
+    end
+  end
+
+  context "when receive 'invalid_command'" do
+    it "raises a proper error" do
+      expect_raises(BoJack::Command::InvalidCommand, "'invalid_command' is not a valid command") do
+        BoJack::Command.from("invalid_command")
+      end
     end
   end
 end

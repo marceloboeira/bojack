@@ -8,7 +8,7 @@ module BoJack
         required(:value)
       end
 
-      def perform(memory, params)
+      def perform(socket, memory, params)
         key = params[:key].to_s
         value = params[:value]
         value = [value] if value.is_a?(String)

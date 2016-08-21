@@ -33,20 +33,19 @@ module BoJack
 
               @logger.info("#{socket.remote_address} requested: #{request.strip}")
 
-              params = parse_request(request)
-              command = BoJack::Command.from(params[:command])
+              begin
+                params = parse_request(request)
+                command = BoJack::Command.from(params[:command])
 
-              if command
-                response = command.run(memory, params)
+                response = command.run(socket, memory, params)
+
+                if command.is_a?(BoJack::Commands::Close)
+                  break
+                end
+
                 socket.puts(response)
-              elsif params[:command] == "close"
-                socket.puts("closing...")
-                @logger.info("#{socket.remote_address} closed the connection")
-
-                socket.close
-                break
-              else
-                socket.puts("error: '#{params[:command]}' is not a valid command")
+              rescue e
+                socket.puts("error: #{e.message}")
               end
             end
           end
