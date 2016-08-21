@@ -1,7 +1,10 @@
 require "commander"
+require "logger"
 require "./version"
 require "./server"
 require "./console"
+
+logger = Logger.new(STDOUT)
 
 cli = Commander::Command.new do |command|
   command.use = "BoJack"
@@ -38,8 +41,16 @@ cli = Commander::Command.new do |command|
       flag.description = "Port."
     end
 
+    command.flags.add do |flag|
+      flag.name = "log-level"
+      flag.long = "--log-level"
+      flag.default = 1
+      flag.description = "Log severity."
+    end
+
     command.run do |options, arguments|
-      BoJack::Server.new(options.string["hostname"], options.int["port"]).start
+      logger.level = Logger::Severity.new(options.int["log-level"].as(Int32))
+      BoJack::Server.new(options.string["hostname"], options.int["port"], logger).start
     end
   end
 
