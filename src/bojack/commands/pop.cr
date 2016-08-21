@@ -13,8 +13,6 @@ module BoJack
 
         return nil if list.empty?
         list.pop
-      rescue
-        "error: '#{key}' is not a valid key"
       end
     end
   end

@@ -15,7 +15,7 @@ module BoJack
 
       private abstract def perform(socket, memory, params : Hash(Symbol, String | Array(String))) : String | Array(String)
 
-      private def validate; end
+      private abstract def validate
 
       private def required(name : Symbol)
         raise BoJack::Commands::Command::MissingRequiredParam.new("Param '#{name}' is required but not present") unless @params.has_key?(name)

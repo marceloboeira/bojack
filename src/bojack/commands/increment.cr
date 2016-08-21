@@ -11,18 +11,17 @@ module BoJack
         key = params[:key].to_s
         data = memory.read(key)
 
-        raise ArgumentError.new if data.size > 1
+        raise ArgumentError.new("'#{key}' cannot be incremented") if data.size > 1
 
-        cast = data.first.to_i64
-        new = (cast + 1).to_s
+        cast = data.first.to_i64?
+
+        raise ArgumentError.new("'#{key}' cannot be incremented") unless cast.is_a?(Int64)
+
+        new = ((cast || 0) + 1).to_s
 
         memory.write(key, [new])
 
         new
-      rescue e : ArgumentError
-        "error: '#{key}' cannot be incremented"
-      rescue e
-        "error: '#{key}' is not a valid key"
       end
     end
   end

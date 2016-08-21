@@ -14,8 +14,6 @@ module BoJack
         value = [value] if value.is_a?(String)
 
         memory.append(key, value)
-      rescue ex
-        "error: '#{key}' is not a valid key"
       end
     end
   end

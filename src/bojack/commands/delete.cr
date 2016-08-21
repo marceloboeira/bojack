@@ -15,8 +15,6 @@ module BoJack
         else
           memory.delete(key).first
         end
-      rescue
-        "error: '#{key}' is not a valid key"
       end
     end
   end

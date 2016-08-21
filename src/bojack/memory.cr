@@ -1,5 +1,7 @@
 module BoJack
   class Memory(K, V)
+    class InvalidKey < Exception; end
+
     struct Entry(V)
       getter value
       def initialize(@value : V); end
@@ -19,7 +21,7 @@ module BoJack
       if entry = @cache[key]?
         entry.value
       else
-        raise "#{key.to_s} is not a valid key"
+        raise BoJack::Memory::InvalidKey.new("'#{key.to_s}' is not a valid key")
       end
     end
 
@@ -27,7 +29,7 @@ module BoJack
       if entry = @cache.delete(key)
         entry.value
       else
-        raise "#{key.to_s} is not a valid key"
+        raise BoJack::Memory::InvalidKey.new("'#{key.to_s}' is not a valid key")
       end
     end
 

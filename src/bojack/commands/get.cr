@@ -16,8 +16,6 @@ module BoJack
         else
           data
         end
-      rescue
-        "error: '#{key}' is not a valid key"
       end
     end
   end
