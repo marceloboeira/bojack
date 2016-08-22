@@ -43,6 +43,29 @@ pong
 |size| return the number of stored items | -- | `size` | the value of stored keys in memory |
 |ping| checks the server | --  | `ping` | pong if everything is correct |
 
+## CLI
+
+Command-line interface supports two commands: `server` and `client`. 
+
+```
+bojack <server/client> <flags>
+```
+
+### Server
+
+|flag|description|example|
+|---|---|---|---|
+|--hostname|Hostname the server will run|127.0.0.1|
+|--port|Port the server will run|5000|
+|--log-level|Level of messages logged|DEBUG - 0, INFO = 1, WARN = 2, ERROR = 3, FATAL = 4|
+
+### Client
+
+|flag|description|example|
+|---|---|---|---|
+|--hostname|Hostname this client will connect|127.0.0.1|
+|--port|Port this client will connect|5000|
+
 ## Contributing
 
 Found a bug? Have a suggestion? Please [open an issue](https://github.com/marceloboeira/bojack/issues/new).
