@@ -72,6 +72,12 @@ List of available commands for BoJack
 |size| return the number of stored items | -- | `size` | the value of stored keys in memory |
 |ping| checks the server | --  | `ping` | pong if everything is correct |
 
+### Clients
+
+Want to use BoJack with your language? Currently we support:
+
+- Crystal - Built-in for now, but a shard is coming soon.
+- [Python](https://github.com/mauricioabreu/bojack-py)
 
 ## Contributing
 
