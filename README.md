@@ -17,11 +17,11 @@
 
 ## Showtime
 
-1. Run: `bojack server -p 5000`
-2. Run: `bojack client -p 5000`
+1. To start the server, run: `bojack server`
+2. To connect a client, in another tab, run: `bojack client`
 
 ```
-$ bojack client -p 5000
+$ bojack client
 > set foo bar
 bar
 > get foo
@@ -30,7 +30,36 @@ bar
 pong
 ```
 
+***By default BoJack runs at 127.0.0.1:5000.***
+
 ## Usage
+
+### CLI
+
+Currently the command-line interface supports two commands: `server` and `client`.
+
+```
+bojack <server/client> <flags>
+```
+
+### Server
+
+|flag|description||
+|---|---|---|---|
+|--hostname|Hostname the server will run|127.0.0.1|
+|--port|Port the server will run|5000|
+|--log-level|Level of messages logged|DEBUG = 0, INFO = 1 (default), WARN = 2, ERROR = 3, FATAL = 4|
+
+### Client
+
+|flag|description|default|
+|---|---|---|---|
+|--hostname|Hostname this client will connect|127.0.0.1|
+|--port|Port this client will connect|5000|
+
+### Commands
+
+List of available commands for BoJack
 
 |command|description|params|example|return|
 |---|---|---|---|---|---|
@@ -43,28 +72,6 @@ pong
 |size| return the number of stored items | -- | `size` | the value of stored keys in memory |
 |ping| checks the server | --  | `ping` | pong if everything is correct |
 
-## CLI
-
-Command-line interface supports two commands: `server` and `client`. 
-
-```
-bojack <server/client> <flags>
-```
-
-### Server
-
-|flag|description|example|
-|---|---|---|---|
-|--hostname|Hostname the server will run|127.0.0.1|
-|--port|Port the server will run|5000|
-|--log-level|Level of messages logged|DEBUG - 0, INFO = 1, WARN = 2, ERROR = 3, FATAL = 4|
-
-### Client
-
-|flag|description|example|
-|---|---|---|---|
-|--hostname|Hostname this client will connect|127.0.0.1|
-|--port|Port this client will connect|5000|
 
 ## Contributing
 
