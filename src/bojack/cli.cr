@@ -4,8 +4,6 @@ require "./version"
 require "./server"
 require "./console"
 
-logger = Logger.new(STDOUT)
-
 cli = Commander::Command.new do |command|
   command.use = "BoJack"
   command.long = "A non-reliable in-memory key-value store."
@@ -42,6 +40,13 @@ cli = Commander::Command.new do |command|
     end
 
     command.flags.add do |flag|
+      flag.name = "log"
+      flag.long = "--log"
+      flag.default = ""
+      flag.description = "Log output file."
+    end
+
+    command.flags.add do |flag|
       flag.name = "log-level"
       flag.long = "--log-level"
       flag.default = 1
@@ -49,6 +54,16 @@ cli = Commander::Command.new do |command|
     end
 
     command.run do |options, arguments|
+      output = if options.string["log"].empty?
+                 STDOUT
+               else
+                 filename = File.basename(options.string["log"], ".log")
+                 pathname = File.dirname(options.string["log"])
+                 timestamp = Time.now.to_s("%Y%m%d%H%M%S")
+                 File.new("#{pathname}/#{filename}_#{timestamp}.log", "w")
+               end
+
+      logger = Logger.new(output)
       logger.level = Logger::Severity.new(options.int["log-level"].as(Int32))
       BoJack::Server.new(options.string["hostname"], options.int["port"], logger).start
     end
