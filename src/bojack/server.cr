@@ -20,7 +20,7 @@ module BoJack
       server.recv_buffer_size = 4096
       memory = BoJack::Memory(String, Array(String)).new
 
-      @logger.info("Server started on #{@hostname}:#{@port}")
+      @logger.info("Server started at #{@hostname}:#{@port}")
 
       loop do
         if socket = server.accept
