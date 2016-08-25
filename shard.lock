@@ -1,5 +1,10 @@
 version: 1.0
 shards:
+  bojack-client:
+    path: ../bojack_clients/bojack
+    version: 0.1.0
+
   commander:
     github: mrrooijen/commander
     version: 0.3.3
+
