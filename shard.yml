@@ -10,3 +10,7 @@ dependencies:
   commander:
     github: mrrooijen/commander
     version: ~> 0.3.3
+
+  bojack-client:
+    github: hugoabonizio/bojack.cr
+    version: ~> 0.1.0

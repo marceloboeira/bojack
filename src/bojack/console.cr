@@ -1,6 +1,5 @@
 require "readline"
-require "./client"
-require "./command"
+require "bojack-client"
 
 module BoJack
   class Console
