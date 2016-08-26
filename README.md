@@ -76,8 +76,8 @@ List of available commands for BoJack
 
 Want to use BoJack with your language? Currently we support:
 
-- Crystal - Built-in for now, but a shard is coming soon.
-- [Python](https://github.com/mauricioabreu/bojack-py)
+- [Crystal](http://github.com/hugoabonizio/bojack.cr) - Thanks to @hugoabonizio
+- [Python](https://github.com/mauricioabreu/bojack-py) - Thanks to @mauricioabreu
 
 ## Contributing
 
