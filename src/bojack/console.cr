@@ -7,7 +7,12 @@ module BoJack
     @port : Int8 | Int16 | Int32 | Int64
 
     def initialize(@hostname = "127.0.0.1", @port = 5000)
-      @client = BoJack::Client.new(@hostname, @port)
+      begin
+        @client = BoJack::Client.new(@hostname, @port)
+      rescue exception
+        puts exception.message
+        exit -1
+      end
     end
 
     def start
