@@ -25,6 +25,12 @@ module BoJack
 
       @logger.info("Server started at #{@hostname}:#{@port}")
 
+      Signal::INT.trap do
+        @logger.info("BoJack is going to take a rest")
+        server.close
+        exit
+      end
+
       loop do
         if socket = server.accept
           @logger.info("#{socket.remote_address} connected")
