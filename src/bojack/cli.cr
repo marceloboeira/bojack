@@ -25,7 +25,6 @@ cli = Commander::Command.new do |command|
 
     command.flags.add do |flag|
       flag.name = "hostname"
-      flag.short = "-h"
       flag.long = "--hostname"
       flag.default = "127.0.0.1"
       flag.description = "Hostname."
@@ -33,7 +32,6 @@ cli = Commander::Command.new do |command|
 
     command.flags.add do |flag|
       flag.name = "port"
-      flag.short = "-p"
       flag.long = "--port"
       flag.default = 5000
       flag.description = "Port."
@@ -76,7 +74,6 @@ cli = Commander::Command.new do |command|
 
     command.flags.add do |flag|
       flag.name = "hostname"
-      flag.short = "-h"
       flag.long = "--hostname"
       flag.default = "127.0.0.1"
       flag.description = "Hostname."
@@ -84,7 +81,6 @@ cli = Commander::Command.new do |command|
 
     command.flags.add do |flag|
       flag.name = "port"
-      flag.short = "-p"
       flag.long = "--port"
       flag.default = 5000
       flag.description = "Port."
