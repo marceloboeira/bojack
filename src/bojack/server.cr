@@ -1,4 +1,5 @@
 require "socket"
+require "logger"
 require "./memory"
 require "./command"
 require "./logger"
@@ -8,9 +9,10 @@ module BoJack
   class Server
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
+    @logger : ::Logger
 
     def initialize(@hostname = "127.0.0.1", @port = 5000)
-      @logger = BoJack::Log.instance(hostname: hostname, port: port)
+      @logger = BoJack::Logger.instance(hostname: hostname, port: port).log
     end
 
     def start
@@ -21,24 +23,24 @@ module BoJack
 
       puts BoJack::Logo.build
 
-      @logger.log.info("Server started at #{@hostname}:#{@port}")
+      @logger.info("Server started at #{@hostname}:#{@port}")
 
       Signal::INT.trap do
-        @logger.log.info("BoJack is going to take a rest")
+        @logger.info("BoJack is going to take a rest")
         server.close
         exit
       end
 
       loop do
         if socket = server.accept
-          @logger.log.info("#{socket.remote_address} connected")
+          @logger.info("#{socket.remote_address} connected")
 
           spawn do
             loop do
               request = socket.gets
               break unless request
 
-              @logger.log.info("#{socket.remote_address} requested: #{request.strip}")
+              @logger.info("#{socket.remote_address} requested: #{request.strip}")
 
               begin
                 params = parse_request(request)
@@ -53,7 +55,7 @@ module BoJack
                 socket.puts(response)
               rescue e
                 message = "error: #{e.message}"
-                @logger.log.error(message)
+                @logger.error(message)
                 socket.puts(message)
               end
             end

@@ -62,7 +62,7 @@ cli = Commander::Command.new do |command|
                end
 
       severity = options.int["log-level"].as(Int32)
-      BoJack::Log.instance(output, severity, options.string["hostname"], options.int["port"])
+      BoJack::Logger.instance(output, severity, options.string["hostname"], options.int["port"])
       BoJack::Server.new(options.string["hostname"], options.int["port"]).start
     end
   end
