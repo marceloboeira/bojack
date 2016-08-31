@@ -61,9 +61,9 @@ cli = Commander::Command.new do |command|
                  File.new("#{pathname}/#{filename}_#{timestamp}.log", "w")
                end
 
-      logger = Logger.new(output)
-      logger.level = Logger::Severity.new(options.int["log-level"].as(Int32))
-      BoJack::Server.new(options.string["hostname"], options.int["port"], logger).start
+      severity = options.int["log-level"].as(Int32)
+      BoJack::Logger.instance(output, severity, options.string["hostname"], options.int["port"])
+      BoJack::Server.new(options.string["hostname"], options.int["port"]).start
     end
   end
 

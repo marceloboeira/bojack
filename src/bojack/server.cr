@@ -2,17 +2,17 @@ require "socket"
 require "logger"
 require "./memory"
 require "./command"
+require "./logger"
 require "./version"
 
 module BoJack
   class Server
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
+    @logger : ::Logger
 
-    def initialize(@hostname = "127.0.0.1", @port = 5000, @logger = Logger.new(STDOUT))
-      @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
-        io << "[bojack][#{hostname}:#{port}][#{datetime}][#{severity}] #{message}"
-      end
+    def initialize(@hostname = "127.0.0.1", @port = 5000)
+      @logger = BoJack::Logger.instance(hostname: hostname, port: port).log
     end
 
     def start
