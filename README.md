@@ -49,6 +49,7 @@ bojack <server/client> <flags>
 |---|---|---|---|
 |--hostname|Hostname the server will run|127.0.0.1|
 |--port|Port the server will run|5000|
+|--log|Path for a log file|STDOUT|
 |--log-level|Level of messages logged|DEBUG = 0, INFO = 1 (default), WARN = 2, ERROR = 3, FATAL = 4|
 
 ### Client
