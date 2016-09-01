@@ -52,7 +52,8 @@ cli = Commander::Command.new do |command|
     end
 
     command.run do |options, arguments|
-      output =  if options.string["log"].empty?  STDOUT
+      output =  if options.string["log"].empty?
+                  STDOUT
                else
                  options.string["log"]
                end
