@@ -1,5 +1,6 @@
 require "socket"
 require "logger"
+require "./logger"
 require "./memory"
 require "./command"
 require "./version"
@@ -8,12 +9,9 @@ module BoJack
   class Server
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
+    @logger : ::Logger = BoJack::Logger.instance
 
-    def initialize(@hostname = "127.0.0.1", @port = 5000, @logger = Logger.new(STDOUT))
-      @logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
-        io << "[bojack][#{hostname}:#{port}][#{datetime}][#{severity}] #{message}"
-      end
-    end
+    def initialize(@hostname = "127.0.0.1", @port = 5000); end
 
     def start
       server = TCPServer.new(@hostname, @port)

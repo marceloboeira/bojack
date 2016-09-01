@@ -52,18 +52,14 @@ cli = Commander::Command.new do |command|
     end
 
     command.run do |options, arguments|
-      output = if options.string["log"].empty?
-                 STDOUT
+      output =  if options.string["log"].empty?  STDOUT
                else
-                 filename = File.basename(options.string["log"], ".log")
-                 pathname = File.dirname(options.string["log"])
-                 timestamp = Time.now.to_s("%Y%m%d%H%M%S")
-                 File.new("#{pathname}/#{filename}_#{timestamp}.log", "w")
+                 options.string["log"]
                end
 
-      logger = Logger.new(output)
-      logger.level = Logger::Severity.new(options.int["log-level"].as(Int32))
-      BoJack::Server.new(options.string["hostname"], options.int["port"], logger).start
+      BoJack::Logger.build(output, options.int["log-level"].as(Int32), options.string["hostname"], options.int["port"].as(Int32))
+
+      BoJack::Server.new(options.string["hostname"], options.int["port"]).start
     end
   end
 
