@@ -3,7 +3,7 @@ require "logger"
 require "./logger"
 require "./memory"
 require "./command"
-require "./version"
+require "./logo"
 
 module BoJack
   class Server
@@ -19,7 +19,7 @@ module BoJack
       server.recv_buffer_size = 4096
       memory = BoJack::Memory(String, Array(String)).new
 
-      puts BoJack::Logo.build
+      BoJack::Logo.render
 
       @logger.info("Server started at #{@hostname}:#{@port}")
 
@@ -76,12 +76,4 @@ module BoJack
     end
   end
 
-  class Logo
-    def self.build
-      logo = String.build do |logo|
-        logo << File.read(File.join(File.dirname(__FILE__), "logo"))
-        logo << "BoJack #{BoJack::VERSION}"
-      end
-    end
-  end
 end
