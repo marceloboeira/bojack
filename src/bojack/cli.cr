@@ -3,6 +3,7 @@ require "./server"
 require "./version"
 require "./logger"
 require "./console"
+require "./socket"
 
 module BoJack
   class CLI
@@ -41,6 +42,13 @@ module BoJack
           end
 
           command.flags.add do |flag|
+            flag.name = "unix-socket"
+            flag.long = "--unix-socket"
+            flag.default = ""
+            flag.description = "UNIX socket path file."
+          end
+
+          command.flags.add do |flag|
             flag.name = "log"
             flag.long = "--log"
             flag.default = ""
@@ -55,16 +63,16 @@ module BoJack
           end
 
           command.run do |options, arguments|
-            output =  if options.string["log"].empty?
-                        STDOUT
-                      else
-                        options.string["log"]
-                      end
+            output = if options.string["log"].empty?
+                       STDOUT
+                     else
+                       options.string["log"]
+                     end
 
             BoJack::Logger.build(output, options.int["log-level"].as(Int32),
-                                 options.string["hostname"], options.int["port"].as(Int32))
+              options.string["hostname"], options.int["port"].as(Int32))
 
-            BoJack::Server.new(options.string["hostname"], options.int["port"]).start
+            BoJack::Server.new(BoJack::SocketServer.create(options.string["hostname"], options.int["port"], options.string["unix-socket"])).start
           end
         end
 
