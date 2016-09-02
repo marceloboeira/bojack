@@ -13,33 +13,21 @@ module BoJack
     @channel : Channel::Unbuffered(BoJack::Request) = Channel(BoJack::Request).new
     @memory = BoJack::Memory(String, Array(String)).new
 
-    def initialize(@hostname = "127.0.0.1", @port = 5000); end
+    def initialize(@hostname = "127.0.0.1", @port = 5000)
+      @server = TCPServer.new(@hostname, @port)
+      @server.tcp_nodelay = true
+      @server.recv_buffer_size = 4096
+    end
 
     def start
-      server = TCPServer.new(@hostname, @port)
-      server.tcp_nodelay = true
-      server.recv_buffer_size = 4096
-
-      BoJack::Logo.render
-
+      print_logo
       @logger.info("Server started at #{@hostname}:#{@port}")
+      handle_signal_trap
 
-      Signal::INT.trap do
-        @logger.info("BoJack is going to take a rest")
-        server.close
-        exit
-      end
-
-      spawn do
-        loop do
-          if request = @channel.receive
-            request.perform
-          end
-        end
-      end
+      spawn_channel
 
       loop do
-        if socket = server.accept
+        if socket = @server.accept
           @logger.info("#{socket.remote_address} connected")
 
           spawn do
@@ -48,6 +36,28 @@ module BoJack
                 @channel.send(BoJack::Request.new(message, socket, @memory))
               end
             end
+          end
+        end
+      end
+    end
+
+    private def print_logo
+      BoJack::Logo.render
+    end
+
+    private def handle_signal_trap
+      Signal::INT.trap do
+        @logger.info("BoJack is going to take a rest")
+        @server.close
+        exit
+      end
+    end
+
+    private def spawn_channel
+      spawn do
+        loop do
+          if request = @channel.receive
+            request.perform
           end
         end
       end
