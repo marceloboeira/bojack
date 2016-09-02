@@ -14,8 +14,8 @@ module BoJack
       end
 
       @@logger = ::Logger.new(io)
-      @@logger.level = Logger::Severity.new(level)
-      @@logger.formatter = Logger::Formatter.new do |severity, datetime, progname, message, io|
+      @@logger.level = ::Logger::Severity.new(level)
+      @@logger.formatter = ::Logger::Formatter.new do |severity, datetime, progname, message, io|
         io << "[bojack][#{hostname}:#{port}][#{datetime}][#{severity}] #{message}"
       end
     end
