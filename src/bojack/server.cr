@@ -1,8 +1,8 @@
 require "socket"
 require "logger"
 require "./logger"
+require "./request"
 require "./memory"
-require "./command"
 require "./logo"
 
 module BoJack
@@ -10,6 +10,8 @@ module BoJack
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
     @logger : ::Logger = BoJack::Logger.instance
+    @channel : Channel::Unbuffered(BoJack::Request) = Channel(BoJack::Request).new
+    @memory = BoJack::Memory(String, Array(String)).new
 
     def initialize(@hostname = "127.0.0.1", @port = 5000); end
 
@@ -17,7 +19,6 @@ module BoJack
       server = TCPServer.new(@hostname, @port)
       server.tcp_nodelay = true
       server.recv_buffer_size = 4096
-      memory = BoJack::Memory(String, Array(String)).new
 
       BoJack::Logo.render
 
@@ -29,51 +30,27 @@ module BoJack
         exit
       end
 
+      spawn do
+        loop do
+          if request = @channel.receive
+            request.perform
+          end
+        end
+      end
+
       loop do
         if socket = server.accept
           @logger.info("#{socket.remote_address} connected")
 
           spawn do
             loop do
-              request = socket.gets
-              break unless request
-
-              @logger.info("#{socket.remote_address} requested: #{request.strip}")
-
-              begin
-                params = parse_request(request)
-                command = BoJack::Command.from(params[:command])
-
-                response = command.run(socket, memory, params)
-
-                if command.is_a?(BoJack::Commands::Close)
-                  break
-                end
-
-                socket.puts(response)
-              rescue e
-                message = "error: #{e.message}"
-                @logger.error(message)
-                socket.puts(message)
+              if message = socket.gets
+                @channel.send(BoJack::Request.new(message, socket, @memory))
               end
             end
           end
         end
       end
     end
-
-    private def parse_request(request) : Hash(Symbol, String | Array(String))
-      request = request.split(" ").map { |item| item.strip }
-
-      command = request[0]
-      result = Hash(Symbol, String | Array(String)).new
-      result[:command] = command
-
-      result[:key] = request[1] if request[1]?
-      result[:value] = request[2].split(",") if request[2]?
-
-      result
-    end
   end
-
 end
