@@ -32,9 +32,9 @@ module BoJack
 
           spawn do
             loop do
-              if message = socket.gets
-                @channel.send(BoJack::Request.new(message, socket, @memory))
-              end
+              message = socket.gets
+              break unless message
+              @channel.send(BoJack::Request.new(message, socket, @memory))
             end
           end
         end
