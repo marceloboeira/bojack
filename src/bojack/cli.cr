@@ -9,7 +9,7 @@ module BoJack
     def self.run(args)
       cli = Commander::Command.new do |command|
         command.use = "BoJack"
-        command.long = "A non-reliable in-memory key-value store."
+        command.long = "The unreliable key-value store"
 
         command.commands.add do |command|
           command.use = "version"

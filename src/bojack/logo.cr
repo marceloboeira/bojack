@@ -12,9 +12,9 @@ module BoJack
       )))))     >.__     \
       ((('     /    `-. .c|
               /        `-`'
-      BoJack VERSION
+      BoJack VERSION - The unreliable key-value store
       HERE
-     
+
      puts logo.gsub("VERSION", BoJack::VERSION)
     end
   end
