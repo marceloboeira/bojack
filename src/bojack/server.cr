@@ -21,24 +21,12 @@ module BoJack
 
     def start
       print_logo
+
       @logger.info("Server started at #{@hostname}:#{@port}")
+
       handle_signal_trap
-
       spawn_channel
-
-      loop do
-        if socket = @server.accept
-          @logger.info("#{socket.remote_address} connected")
-
-          spawn do
-            loop do
-              message = socket.gets
-              break unless message
-              @channel.send(BoJack::Request.new(message, socket, @memory))
-            end
-          end
-        end
-      end
+      spawn_request_handler
     end
 
     private def print_logo
@@ -58,6 +46,22 @@ module BoJack
         loop do
           if request = @channel.receive
             request.perform
+          end
+        end
+      end
+    end
+
+    private def spawn_request_handler
+      loop do
+        if socket = @server.accept
+          @logger.info("#{socket.remote_address} connected")
+
+          spawn do
+            loop do
+              message = socket.gets
+              break unless message
+              @channel.send(BoJack::Request.new(message, socket, @memory))
+            end
           end
         end
       end
