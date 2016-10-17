@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/marceloboeira/bojack.png?label=ready&title=Ready)](https://waffle.io/marceloboeira/bojack)
 <img src="https://raw.githubusercontent.com/marceloboeira/bojack/master/docs/bojack.png" width="250" align="right">
 # BoJack [![Travis](https://img.shields.io/travis/marceloboeira/bojack.svg?maxAge=360)](https://travis-ci.org/marceloboeira/bojack) [![Stories in Ready](https://img.shields.io/waffle/label/marceloboeira/bojack/ready.svg?maxAge=360)](http://waffle.io/marceloboeira/bojack) [![Releases](https://img.shields.io/github/release/marceloboeira/bojack.svg?maxAge=360)](http://github.com/marceloboeira/bojack/releases) [![Join the chat at https://gitter.im/bo-jack/Lobby](https://badges.gitter.im/bo-jack/Lobby.svg)](https://gitter.im/bo-jack/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
