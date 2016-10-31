@@ -9,6 +9,7 @@ require "./event_loop/channel"
 module BoJack
   class Server
     @logger : BoJack::Logger = BoJack::Logger.instance
+    @@memory : BoJack::Memory(String, Array(String)) = BoJack::Memory(String, Array(String)).new
 
     def initialize(@hostname : String = "127.0.0.1", @port : Int8 | Int16 | Int32 | Int64 = 5000)
       @server = TCPServer.new(@hostname, @port)
@@ -25,8 +26,7 @@ module BoJack
       channel = Channel::Unbuffered(BoJack::Request).new
       BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
 
-      memory = BoJack::Memory(String, Array(String)).new
-      BoJack::EventLoop::Connection.new(@server, channel, memory).start
+      BoJack::EventLoop::Connection.new(@server, channel).start
     end
 
     private def print_logo
@@ -34,7 +34,7 @@ module BoJack
     end
 
     private def log_started_at
-      @logger.info("Server started at #{@hostname}:#{@port}")
+      @logger.info("BoJack is running at #{@hostname}:#{@port}")
     end
 
     private def handle_signal_trap
@@ -43,6 +43,10 @@ module BoJack
         @server.close
         exit
       end
+    end
+
+    def self.memory
+      @@memory
     end
   end
 end

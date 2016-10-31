@@ -1,16 +1,20 @@
+
 module BoJack
   module Commands
     abstract class Command
       class MissingRequiredParam < Exception; end
+
+      @memory : BoJack::Memory(String, Array(String)) = BoJack::Server.memory
+
       def initialize
         @params = Hash(Symbol, String | Array(String)).new
       end
 
-      def run(socket, memory, params : Hash(Symbol, String | Array(String)))
+      def run(socket, params : Hash(Symbol, String | Array(String)))
         @params = params
         validate
 
-        perform(socket, memory, params)
+        perform(socket, @memory, params)
       end
 
       private abstract def perform(socket, memory, params : Hash(Symbol, String | Array(String))) : String | Array(String)

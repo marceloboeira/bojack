@@ -7,13 +7,14 @@ module BoJack
     class Connection
       @logger : BoJack::Logger = BoJack::Logger.instance
 
-      def initialize(@server : TCPServer, @channel : ::Channel::Unbuffered(BoJack::Request), @memory : BoJack::Memory(String, Array(String))); end
+      def initialize(@server : TCPServer, @channel : ::Channel::Unbuffered(BoJack::Request)); end
 
       def start
         loop do
           if socket = @server.accept
             @logger.info("#{socket.remote_address} connected")
-            Message.new(socket, @channel, @memory).start
+
+            Message.new(socket, @channel).start
           end
         end
       end
@@ -21,7 +22,7 @@ module BoJack
     end
 
     class Message
-      def initialize(@socket : TCPSocket, @channel : ::Channel::Unbuffered(BoJack::Request), @memory : BoJack::Memory(String, Array(String))); end
+      def initialize(@socket : TCPSocket, @channel : ::Channel::Unbuffered(BoJack::Request)); end
 
       def start
         spawn do
@@ -29,7 +30,7 @@ module BoJack
             message = @socket.gets
             break unless message
 
-            @channel.send(BoJack::Request.new(message, @socket, @memory))
+            @channel.send(BoJack::Request.new(message, @socket))
           end
         end
       end

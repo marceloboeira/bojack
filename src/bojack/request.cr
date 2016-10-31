@@ -1,20 +1,19 @@
 require "socket"
 require "./logger"
 require "./command"
-require "./memory"
 
 module BoJack
   class Request
     @logger : BoJack::Logger = BoJack::Logger.instance
 
-    def initialize(@body : String, @socket : TCPSocket, @memory : BoJack::Memory(String, Array(String))); end
+    def initialize(@body : String, @socket : TCPSocket); end
 
     def perform
       @logger.info("#{@socket.remote_address} requested: #{@body.strip}")
       params = parse(@body)
       command = BoJack::Command.from(params[:command])
 
-      response = command.run(@socket, @memory, params)
+      response = command.run(@socket, params)
 
       @socket.puts(response)
     rescue e
