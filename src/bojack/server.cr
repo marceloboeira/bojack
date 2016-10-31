@@ -22,7 +22,7 @@ module BoJack
     def start
       print_logo
 
-      @logger.info("Server started at #{@hostname}:#{@port}")
+      log_started_at
 
       handle_signal_trap
       spawn_channel
@@ -31,6 +31,10 @@ module BoJack
 
     private def print_logo
       BoJack::Logo.render
+    end
+
+    private def log_started_at
+      @logger.info("Server started at #{@hostname}:#{@port}")
     end
 
     private def handle_signal_trap
