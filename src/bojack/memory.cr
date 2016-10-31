@@ -8,11 +8,11 @@ module BoJack
     end
 
     def initialize
-      @cache = {} of K => Entry(V)
+      @cache = {} of K => BoJack::Memory::Entry(V)
     end
 
     def write(key : K, value : V) : V
-      @cache[key] = Entry.new(value)
+      @cache[key] = BoJack::Memory::Entry.new(value)
 
       value
     end
@@ -44,10 +44,10 @@ module BoJack
     end
 
     def reset
-      @cache = {} of K => Entry(V)
+      @cache = {} of K => BoJack::Memory::Entry(V)
     end
 
-    private def read_entry(key : K) : Entry(V)?
+    private def read_entry(key : K) : BoJack::Memory::Entry(V)?
       if entry = @cache[key]?
         entry
       end
