@@ -69,8 +69,8 @@ module BoJack
         end
 
         command.commands.add do |command|
-          command.use = "client"
-          command.short = "Starts a client."
+          command.use = "console"
+          command.short = "Starts a console."
           command.long = command.short
 
           command.flags.add do |flag|

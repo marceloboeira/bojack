@@ -22,7 +22,7 @@
 2. To connect a client, in another tab, run: `bojack client`
 
 ```
-$ bojack client
+$ bojack console
 > set foo bar
 bar
 > get foo
@@ -37,10 +37,10 @@ pong
 
 ### CLI
 
-Currently the command-line interface supports two commands: `server` and `client`.
+Currently the command-line interface supports two commands: `server` and `console`.
 
 ```
-bojack <server/client> <flags>
+bojack <server/console> <flags>
 ```
 
 ### Server
@@ -52,12 +52,12 @@ bojack <server/client> <flags>
 |--log|Path for a log file|STDOUT|
 |--log-level|Level of messages logged|DEBUG = 0, INFO = 1 (default), WARN = 2, ERROR = 3, FATAL = 4|
 
-### Client
+### Console
 
 |flag|description|default|
 |---|---|---|---|
-|--hostname|Hostname this client will connect|127.0.0.1|
-|--port|Port this client will connect|5000|
+|--hostname|Hostname this console will connect|127.0.0.1|
+|--port|Port this console will connect|5000|
 
 ### Commands
 
