@@ -4,6 +4,7 @@ require "./logger"
 require "./request"
 require "./memory"
 require "./logo"
+require "./event_loop"
 require "./event_loop/channel"
 
 module BoJack
@@ -11,7 +12,7 @@ module BoJack
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
     @logger : ::Logger = BoJack::Logger.instance
-    @memory = BoJack::Memory(String, Array(String)).new
+
 
     def initialize(@hostname = "127.0.0.1", @port = 5000)
       @server = TCPServer.new(@hostname, @port)
@@ -28,7 +29,8 @@ module BoJack
       channel = Channel::Unbuffered(BoJack::Request).new
       BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
 
-      spawn_request_handler(channel)
+      memory = BoJack::Memory(String, Array(String)).new
+      BoJack::EventLoop::Connection.new(@server, channel, memory).start
     end
 
     private def print_logo
@@ -44,22 +46,6 @@ module BoJack
         @logger.info("BoJack is going to take a rest")
         @server.close
         exit
-      end
-    end
-
-    private def spawn_request_handler(channel)
-      loop do
-        if socket = @server.accept
-          @logger.info("#{socket.remote_address} connected")
-
-          spawn do
-            loop do
-              message = socket.gets
-              break unless message
-              channel.send(BoJack::Request.new(message, socket, @memory))
-            end
-          end
-        end
       end
     end
   end
