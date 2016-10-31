@@ -11,7 +11,6 @@ module BoJack
     @hostname : String
     @port : Int8 | Int16 | Int32 | Int64
     @logger : ::Logger = BoJack::Logger.instance
-    @channel : Channel::Unbuffered(BoJack::Request) = Channel(BoJack::Request).new
     @memory = BoJack::Memory(String, Array(String)).new
 
     def initialize(@hostname = "127.0.0.1", @port = 5000)
@@ -26,8 +25,10 @@ module BoJack
 
       handle_signal_trap
 
-      start_channel
-      spawn_request_handler
+      channel = Channel::Unbuffered(BoJack::Request).new
+      BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
+
+      spawn_request_handler(channel)
     end
 
     private def print_logo
@@ -46,11 +47,7 @@ module BoJack
       end
     end
 
-    private def start_channel
-      BoJack::EventLoop::Channel(BoJack::Request).new(@channel).start
-    end
-
-    private def spawn_request_handler
+    private def spawn_request_handler(channel)
       loop do
         if socket = @server.accept
           @logger.info("#{socket.remote_address} connected")
@@ -59,7 +56,7 @@ module BoJack
             loop do
               message = socket.gets
               break unless message
-              @channel.send(BoJack::Request.new(message, socket, @memory))
+              channel.send(BoJack::Request.new(message, socket, @memory))
             end
           end
         end
