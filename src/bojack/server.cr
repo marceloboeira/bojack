@@ -4,6 +4,7 @@ require "./logger"
 require "./request"
 require "./memory"
 require "./logo"
+require "./event_loop/channel"
 
 module BoJack
   class Server
@@ -21,11 +22,11 @@ module BoJack
 
     def start
       print_logo
-
       log_started_at
 
       handle_signal_trap
-      spawn_channel
+
+      start_channel
       spawn_request_handler
     end
 
@@ -45,14 +46,8 @@ module BoJack
       end
     end
 
-    private def spawn_channel
-      spawn do
-        loop do
-          if request = @channel.receive
-            request.perform
-          end
-        end
-      end
+    private def start_channel
+      BoJack::EventLoop::Channel(BoJack::Request).new(@channel).start
     end
 
     private def spawn_request_handler
