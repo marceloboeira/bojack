@@ -1,12 +1,12 @@
 require "socket"
-require "logger"
 require "./logger"
 require "./command"
 require "./memory"
 
 module BoJack
   class Request
-    @logger : ::Logger = BoJack::Logger.instance
+    @logger : BoJack::Logger = BoJack::Logger.instance
+
     def initialize(@body : String, @socket : TCPSocket, @memory : BoJack::Memory(String, Array(String))); end
 
     def perform

@@ -1,20 +1,16 @@
 require "socket"
-require "logger"
+require "./memory"
 require "./logger"
 require "./request"
-require "./memory"
 require "./logo"
 require "./event_loop"
 require "./event_loop/channel"
 
 module BoJack
   class Server
-    @hostname : String
-    @port : Int8 | Int16 | Int32 | Int64
-    @logger : ::Logger = BoJack::Logger.instance
+    @logger : BoJack::Logger = BoJack::Logger.instance
 
-
-    def initialize(@hostname = "127.0.0.1", @port = 5000)
+    def initialize(@hostname : String = "127.0.0.1", @port : Int8 | Int16 | Int32 | Int64 = 5000)
       @server = TCPServer.new(@hostname, @port)
       @server.tcp_nodelay = true
       @server.recv_buffer_size = 4096

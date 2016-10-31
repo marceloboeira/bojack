@@ -1,12 +1,11 @@
 require "socket"
-require "logger"
 require "./logger"
 require "./request"
 
 module BoJack
   module EventLoop
     class Connection
-      @logger : ::Logger = BoJack::Logger.instance
+      @logger : BoJack::Logger = BoJack::Logger.instance
 
       def initialize(@server : TCPServer, @channel : ::Channel::Unbuffered(BoJack::Request), @memory : BoJack::Memory(String, Array(String))); end
 

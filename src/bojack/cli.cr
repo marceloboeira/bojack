@@ -1,7 +1,7 @@
 require "commander"
-require "logger"
-require "./version"
 require "./server"
+require "./version"
+require "./logger"
 require "./console"
 
 module BoJack
