@@ -18,26 +18,25 @@ module BoJack
 
     def start
       print_logo
-      log_started_at
-
       handle_signal_trap
-
-      channel = Channel::Unbuffered(BoJack::Request).new
-      BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
-
-      BoJack::EventLoop::Connection.new(@server, channel).start
+      start_connection_loop
     end
 
     private def print_logo
       BoJack::Logo.render
     end
 
-    private def log_started_at
-      @logger.info("BoJack is running at #{@hostname}:#{@port}")
-    end
-
     private def handle_signal_trap
       BoJack::EventLoop::Signal.new.watch(@server)
+    end
+
+    private def start_connection_loop
+      @logger.info("BoJack is running at #{@hostname}:#{@port}")
+
+      channel = Channel::Unbuffered(BoJack::Request).new
+      BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
+
+      BoJack::EventLoop::Connection.new(@server, channel).start
     end
 
     def self.memory
