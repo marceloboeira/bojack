@@ -3,6 +3,16 @@
 
 > The unreliable key-value store
 
+## Status
+
+Originally, from my article "[Why you should build your own NoSQL Database](http://medium.com/@marceloboeira/why-you-should-build-your-own-nosql-database-9bbba42039f5)". BoJack is a bit mature now, yet missing several important features:
+
+ - Cluster-friendliness
+ - Security Layer (#34)
+ - Unix Socket support (#48)
+
+Feel free to share your thoughts and [contribute](##contributing).
+
 ## Installation
 
 **Requirements**
@@ -76,7 +86,7 @@ List of available commands for BoJack
 
 ### Clients
 
-Want to use BoJack with your language? Currently we support:
+Want to use BoJack with your language? Currently, we support:
 
 - [Crystal](http://github.com/hugoabonizio/bojack.cr) - Thanks to @hugoabonizio
 - [Python](https://github.com/mauricioabreu/bojack-py) - Thanks to @mauricioabreu
@@ -86,4 +96,4 @@ Want to use BoJack with your language? Currently we support:
 
 Found a bug? Have a suggestion? Please [open an issue](https://github.com/marceloboeira/bojack/issues/new).
 
-Want to contribute? Make sure you follow the [guide](CONTRIBUTING.md).
+Want to contribute? Take a look at our [open issues](https://github.com/marceloboeira/bojack/issues) and make sure you follow our [guide](CONTRIBUTING.md).
