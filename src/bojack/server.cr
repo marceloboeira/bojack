@@ -37,11 +37,7 @@ module BoJack
     end
 
     private def handle_signal_trap
-      Signal::INT.trap do
-        @logger.info("BoJack is going to take a rest")
-        @server.close
-        exit
-      end
+      BoJack::EventLoop::Signal.new.watch(@server)
     end
 
     def self.memory
