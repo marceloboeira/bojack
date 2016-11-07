@@ -3,8 +3,7 @@ require "./memory"
 require "./logger"
 require "./request"
 require "./logo"
-require "./event_loop"
-require "./event_loop/channel"
+require "./event_loop/*"
 
 module BoJack
   class Server
