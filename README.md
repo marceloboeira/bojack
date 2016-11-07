@@ -17,8 +17,8 @@ Feel free to share your thoughts and [contribute](##contributing).
 
 **Requirements**
 
-* The latest version of Crystal (0.18.x).
-* LLVM development files.
+* The latest version of Crystal (0.19.x)
+* LLVM development files
 
 **Steps**
 
@@ -28,8 +28,8 @@ Feel free to share your thoughts and [contribute](##contributing).
 
 ## Showtime
 
-1. To start the server, run: `bojack server`
-2. To connect a client, in another tab, run: `bojack client`
+1. Start the server, run: `bojack server`
+2. Connect a client, in another tab, run: `bojack client`
 
 ```
 $ bojack console
