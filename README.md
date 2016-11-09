@@ -33,10 +33,10 @@ Feel free to share your thoughts and [contribute](##contributing).
 
 ```
 $ bojack console
-> set foo bar
-bar
-> get foo
-bar
+> set food 🍣
+🍣
+> get food
+🍣
 > ping
 pong
 ```
