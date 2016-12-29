@@ -1,7 +1,7 @@
 require "spec"
 
 spawn do
-  BoJack::Logger.build(MemoryIO.new)
+  BoJack::Logger.build(IO::Memory.new)
   BoJack::Server.new("127.0.0.1", 5000).start
 end
 

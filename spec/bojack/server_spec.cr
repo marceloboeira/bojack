@@ -12,7 +12,7 @@ describe BoJack::Server do
         socket.puts("ping")
         buffer = socket.gets
 
-        buffer.should eq("pong\n")
+        buffer.should eq("pong")
       end
     end
 
@@ -21,14 +21,14 @@ describe BoJack::Server do
         socket.puts("set bo jack")
         buffer = socket.gets
 
-        buffer.should eq("jack\n")
+        buffer.should eq("jack")
       end
 
       it "sets key with a list" do
         socket.puts("set list boo,foo,bar")
         buffer = socket.gets
 
-        buffer.should eq("[\"boo\", \"foo\", \"bar\"]\n")
+        buffer.should eq("[\"boo\", \"foo\", \"bar\"]")
       end
     end
 
@@ -41,7 +41,7 @@ describe BoJack::Server do
           socket.puts("increment counter")
           buffer = socket.gets
 
-          buffer.should eq("11\n")
+          buffer.should eq("11")
         end
       end
 
@@ -50,7 +50,7 @@ describe BoJack::Server do
           socket.puts("increment invalid_counter")
           buffer = socket.gets
 
-          buffer.should eq("error: 'invalid_counter' is not a valid key\n")
+          buffer.should eq("error: 'invalid_counter' is not a valid key")
         end
 
         describe "when the key is an array" do
@@ -61,7 +61,7 @@ describe BoJack::Server do
             socket.puts("increment counter")
             buffer = socket.gets
 
-            buffer.should eq("error: 'counter' cannot be incremented\n")
+            buffer.should eq("error: 'counter' cannot be incremented")
           end
         end
 
@@ -73,7 +73,7 @@ describe BoJack::Server do
             socket.puts("increment counter")
             buffer = socket.gets
 
-            buffer.should eq("error: 'counter' cannot be incremented\n")
+            buffer.should eq("error: 'counter' cannot be incremented")
           end
         end
       end
@@ -85,14 +85,14 @@ describe BoJack::Server do
           socket.puts("get bo")
           buffer = socket.gets
 
-          buffer.should eq("jack\n")
+          buffer.should eq("jack")
         end
 
         it "returns a list" do
           socket.puts("get list")
           buffer = socket.gets
 
-          buffer.should eq("[\"boo\", \"foo\", \"bar\"]\n")
+          buffer.should eq("[\"boo\", \"foo\", \"bar\"]")
         end
       end
 
@@ -101,7 +101,7 @@ describe BoJack::Server do
           socket.puts("get bar")
           buffer = socket.gets
 
-          buffer.should eq("error: 'bar' is not a valid key\n")
+          buffer.should eq("error: 'bar' is not a valid key")
         end
       end
     end
@@ -115,7 +115,7 @@ describe BoJack::Server do
           socket.puts("append list lol")
           buffer = socket.gets
 
-          buffer.should eq("[\"boo\", \"foo\", \"bar\", \"lol\"]\n")
+          buffer.should eq("[\"boo\", \"foo\", \"bar\", \"lol\"]")
 
           socket.puts("delete list")
           buffer = socket.gets
@@ -127,7 +127,7 @@ describe BoJack::Server do
           socket.puts("append bar lol")
           buffer = socket.gets
 
-          buffer.should eq("error: 'bar' is not a valid key\n")
+          buffer.should eq("error: 'bar' is not a valid key")
         end
       end
     end
@@ -141,7 +141,7 @@ describe BoJack::Server do
           socket.puts("pop list")
           buffer = socket.gets
 
-          buffer.should eq("bar\n")
+          buffer.should eq("bar")
 
           socket.puts("delete list")
           buffer = socket.gets
@@ -153,7 +153,7 @@ describe BoJack::Server do
           socket.puts("append bar lol")
           buffer = socket.gets
 
-          buffer.should eq("error: 'bar' is not a valid key\n")
+          buffer.should eq("error: 'bar' is not a valid key")
         end
       end
 
@@ -170,7 +170,7 @@ describe BoJack::Server do
 
           buffer = socket.gets
 
-          buffer.should eq("\n")
+          buffer.should eq("")
           socket.puts("delete list")
           socket.gets
         end
@@ -183,7 +183,7 @@ describe BoJack::Server do
           socket.puts("delete bo")
           buffer = socket.gets
 
-          buffer.should eq("jack\n")
+          buffer.should eq("jack")
         end
       end
 
@@ -192,7 +192,7 @@ describe BoJack::Server do
           socket.puts("delete bar")
           buffer = socket.gets
 
-          buffer.should eq("error: 'bar' is not a valid key\n")
+          buffer.should eq("error: 'bar' is not a valid key")
         end
       end
 
@@ -201,7 +201,7 @@ describe BoJack::Server do
           socket.puts("delete *")
           buffer = socket.gets
 
-          buffer.should eq("{}\n")
+          buffer.should eq("{}")
         end
       end
     end
@@ -214,7 +214,7 @@ describe BoJack::Server do
         socket.puts("size")
         buffer = socket.gets
 
-        buffer.should eq("1\n")
+        buffer.should eq("1")
       end
     end
 
@@ -223,7 +223,7 @@ describe BoJack::Server do
         socket.puts("jack")
         buffer = socket.gets
 
-        buffer.should eq("error: 'jack' is not a valid command\n")
+        buffer.should eq("error: 'jack' is not a valid command")
       end
     end
     socket.puts("close")
