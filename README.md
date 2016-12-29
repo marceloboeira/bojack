@@ -24,7 +24,7 @@ Feel free to share your thoughts and [contribute](##contributing).
 
 **Requirements**
 
-* The latest version of Crystal (0.19.x)
+* The latest version of Crystal (0.20.x)
 * LLVM development files
 
 **Steps**
