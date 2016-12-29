@@ -6,4 +6,4 @@ spawn do
 end
 
 # ensure the server has started before connection attempt
-sleep 0.1
+sleep 0.0001
