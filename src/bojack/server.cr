@@ -23,7 +23,7 @@ module BoJack
     end
 
     private def print_logo
-      BoJack::Logo.render
+      BoJack::Logo.render(@logger)
     end
 
     private def handle_signal_trap

@@ -2,7 +2,7 @@ require "./version"
 
 module BoJack
   class Logo
-    def self.render
+    def self.render(logger)
       logo = <<-'HERE'
              _|\ _/|_,
            ,((\\``-\\\\_
@@ -15,7 +15,7 @@ module BoJack
       BoJack VERSION - The unreliable key-value store
       HERE
 
-     puts logo.gsub("VERSION", BoJack::VERSION)
+      logger.info(logo.gsub("VERSION", BoJack::VERSION))
     end
   end
 end
