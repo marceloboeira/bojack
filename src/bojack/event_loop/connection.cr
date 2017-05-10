@@ -12,7 +12,7 @@ module BoJack
 
       def start
         loop do
-          if socket = @server.accept
+          if socket = @server.accept?
             @logger.info("#{socket.remote_address} connected")
 
             Message.new(socket, @channel).start
