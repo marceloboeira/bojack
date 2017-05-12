@@ -16,7 +16,8 @@ dependencies:
     version: ~> 0.1.0
 
   resp-server:
-    path: /home/hugo/projects/resp.cr
+    github: hugoabonizio/resp.cr
+    branch: master
 
 development_dependencies:
   resp:

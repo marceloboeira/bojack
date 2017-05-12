@@ -9,6 +9,10 @@ shards:
     version: 0.3.3
 
   resp:
+    github: soveran/resp-crystal
+    commit: f2ccc011296bb17719285067712f1ea057cd79e8
+
+  resp-server:
     github: hugoabonizio/resp.cr
-    commit: 7164475fcf5b009189795a4699b418a9a0e610fb
+    commit: b60da8fbf4b6a8b7d1ec577bcef0b900ca92dee7
 
