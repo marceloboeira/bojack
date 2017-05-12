@@ -1,24 +1,42 @@
 require "socket"
+require "resp-server"
 require "../request"
 
 module BoJack
   module EventLoop
     class Message
-      def initialize(@socket : TCPSocket, @channel : ::Channel::Unbuffered(BoJack::Request), @resp = false); end
+      def initialize(@socket : TCPSocket, @channel : ::Channel::Unbuffered(BoJack::Request)); end
 
       def start
         spawn do
-          loop do
-            if @resp
-              @channel.send(BoJack::RESPRequest.new(@socket))
-            else
-              message = @socket.gets
-              break unless message
+          begin
+            loop do
+              connection = RESP::Connection.new(@socket)
+              params = parse(connection)
 
-              @channel.send(BoJack::PlainRequest.new(message, @socket))
+              @channel.send(BoJack::Request.new(connection, params))
             end
+          rescue e
+            # Client closed connection
+            # Silently ignore?
           end
         end
+      end
+
+      private def parse(connection) : Hash(Symbol, String | Array(String))
+        command, args = connection.parse
+        result = Hash(Symbol, String | Array(String)).new
+
+        return result unless command
+
+        result[:command] = command
+
+        if args
+          result[:key] = args[0].as(String) if args[0]?
+          result[:value] = args[1].as(String) if args[1]?
+        end
+
+        result
       end
     end
   end

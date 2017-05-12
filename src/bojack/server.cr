@@ -2,7 +2,6 @@ require "socket"
 require "./memory"
 require "./logger"
 require "./request"
-require "./request/*"
 require "./logo"
 require "./event_loop/*"
 
@@ -11,7 +10,7 @@ module BoJack
     @logger : BoJack::Logger = BoJack::Logger.instance
     @@memory : BoJack::Memory(String, Array(String)) = BoJack::Memory(String, Array(String)).new
 
-    def initialize(@hostname : String = "127.0.0.1", @port : Int8 | Int16 | Int32 | Int64 = 5000, @resp = false)
+    def initialize(@hostname : String = "127.0.0.1", @port : Int8 | Int16 | Int32 | Int64 = 5000)
       @server = TCPServer.new(@hostname, @port)
       @server.tcp_nodelay = true
       @server.recv_buffer_size = 4096
@@ -37,7 +36,7 @@ module BoJack
       channel = Channel::Unbuffered(BoJack::Request).new
       BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
 
-      BoJack::EventLoop::Connection.new(@server, channel, @resp).start
+      BoJack::EventLoop::Connection.new(@server, channel).start
     end
 
     def self.memory

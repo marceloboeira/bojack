@@ -9,7 +9,6 @@ build:
 dev:
 	$(CRYSTAL_BIN) build -o bin/bojack src/bojack/bootstrap.cr $(CRFLAGS)
 
-
 clean:
 	rm -f ./bin/bojack
 
