@@ -14,3 +14,7 @@ dependencies:
   bojack-client:
     github: hugoabonizio/bojack.cr
     version: ~> 0.1.0
+
+  resp:
+    github: hugoabonizio/resp.cr
+    branch: master

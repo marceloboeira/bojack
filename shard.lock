@@ -1,10 +1,14 @@
 version: 1.0
 shards:
   bojack-client:
-    path: ../bojack_clients/bojack
+    github: hugoabonizio/bojack.cr
     version: 0.1.0
 
   commander:
     github: mrrooijen/commander
     version: 0.3.3
+
+  resp:
+    github: hugoabonizio/resp.cr
+    commit: 7164475fcf5b009189795a4699b418a9a0e610fb
 

@@ -54,17 +54,24 @@ module BoJack
             flag.description = "Log severity."
           end
 
+          command.flags.add do |flag|
+            flag.name = "resp"
+            flag.long = "--resp"
+            flag.default = false
+            flag.description = "RESP mode."
+          end
+
           command.run do |options, arguments|
-            output =  if options.string["log"].empty?
-                        STDOUT
-                      else
-                        options.string["log"]
-                      end
+            output = if options.string["log"].empty?
+                       STDOUT
+                     else
+                       options.string["log"]
+                     end
 
             BoJack::Logger.build(output, options.int["log-level"].as(Int32),
-                                 options.string["hostname"], options.int["port"].as(Int32))
+              options.string["hostname"], options.int["port"].as(Int32))
 
-            BoJack::Server.new(options.string["hostname"], options.int["port"]).start
+            BoJack::Server.new(options.string["hostname"], options.int["port"], options.bool["resp"]).start
           end
         end
 
