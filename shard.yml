@@ -15,6 +15,10 @@ dependencies:
     github: hugoabonizio/bojack.cr
     version: ~> 0.1.0
 
+  resp-server:
+    path: /home/hugo/projects/resp.cr
+
+development_dependencies:
   resp:
-    github: hugoabonizio/resp.cr
+    github: soveran/resp-crystal
     branch: master
