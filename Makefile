@@ -6,6 +6,10 @@ build:
 	$(CRYSTAL_BIN) deps
 	$(CRYSTAL_BIN) build --release -o bin/bojack src/bojack/bootstrap.cr $(CRFLAGS)
 
+dev:
+	$(CRYSTAL_BIN) build -o bin/bojack src/bojack/bootstrap.cr $(CRFLAGS)
+
+
 clean:
 	rm -f ./bin/bojack
 
