@@ -63,7 +63,7 @@ bojack <server/console> <flags>
 ### Server
 
 |flag|description||
-|---|---|---|---|
+|---|---|---|
 |--hostname|Hostname the server will run|127.0.0.1|
 |--port|Port the server will run|5000|
 |--log|Path for a log file|STDOUT|
@@ -72,7 +72,7 @@ bojack <server/console> <flags>
 ### Console
 
 |flag|description|default|
-|---|---|---|---|
+|---|---|---|
 |--hostname|Hostname this console will connect|127.0.0.1|
 |--port|Port this console will connect|5000|
 
@@ -81,7 +81,7 @@ bojack <server/console> <flags>
 List of available commands for BoJack
 
 |command|description|params|example|return|
-|---|---|---|---|---|---|
+|---|---|---|---|---|
 |set| sets a key with the given name and value  | key, value  | `set foo bar`  | the value of the key "bar"  |
 |increment| increments the given key value by 1| key | `increment foo`  | the value of the key "foo" incremented |
 |get| gets the value of the given value  | key | `get foo` | the value stored at the key, "bar" |
