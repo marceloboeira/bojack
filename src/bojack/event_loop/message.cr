@@ -27,7 +27,10 @@ module BoJack
         command, args = connection.parse
         result = Hash(Symbol, String | Array(String)).new
 
-        return result unless command
+        unless command
+          result[:command] = "invalid"
+          return result
+        end
 
         result[:command] = command
 
