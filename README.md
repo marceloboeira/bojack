@@ -95,9 +95,10 @@ List of available commands for BoJack
 
 Want to use BoJack with your language? Currently, we support:
 
-- [Crystal](http://github.com/hugoabonizio/bojack.cr) - Thanks to @hugoabonizio
+- [Crystal](https://github.com/hugoabonizio/bojack.cr) - Thanks to @hugoabonizio
 - [Python](https://github.com/mauricioabreu/bojack-py) - Thanks to @mauricioabreu
-- [Ruby](http://github.com/hugoabonizio/bojack.rb) - Thanks to @hugoabonizio
+- [Ruby](https://github.com/hugoabonizio/bojack.rb) - Thanks to @hugoabonizio
+- [Elixir](https://github.com/veelenga/bojack.ex) - Thanks to @veelenga
 
 ## Contributing
 
