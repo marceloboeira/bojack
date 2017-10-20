@@ -105,3 +105,8 @@ Want to use BoJack with your language? Currently, we support:
 Found a bug? Have a suggestion? Please [open an issue](https://github.com/marceloboeira/bojack/issues/new).
 
 Want to contribute? Take a look at our [open issues](https://github.com/marceloboeira/bojack/issues) and make sure you follow our [guide](CONTRIBUTING.md).
+
+
+## License
+
+Check the License [here](LICENSE).
