@@ -7,7 +7,7 @@ module BoJack
         spawn do
           loop do
             if action = @channel.receive
-              action.perform 
+              action.perform
             end
           end
         end
