@@ -1,7 +1,7 @@
 module BoJack
   module EventLoop
     class Channel(T)
-      def initialize(@channel : ::Channel::Unbuffered(T)); end
+      def initialize(@channel : ::Channel::Buffered(T)); end
 
       def start
         spawn do

@@ -10,7 +10,9 @@ module BoJack
     @logger : BoJack::Logger = BoJack::Logger.instance
     @@memory : BoJack::Memory(String, Array(String)) = BoJack::Memory(String, Array(String)).new
 
-    def initialize(@hostname : String = "127.0.0.1", @port : Int8 | Int16 | Int32 | Int64 = 5000)
+    def initialize(@hostname : String = "127.0.0.1",
+                   @port : Int8 | Int16 | Int32 | Int64 = 5000,
+                   @buffer_size : Int8 | Int16 | Int32 | Int64 = 100)
       @server = TCPServer.new(@hostname, @port)
       @server.tcp_nodelay = true
       @server.recv_buffer_size = 4096
@@ -33,7 +35,7 @@ module BoJack
     private def start_connection_loop
       @logger.info("BoJack is running at #{@hostname}:#{@port}")
 
-      channel = Channel::Unbuffered(BoJack::Request).new
+      channel = Channel::Buffered(BoJack::Request).new(@buffer_size.to_i32)
       BoJack::EventLoop::Channel(BoJack::Request).new(channel).start
 
       BoJack::EventLoop::Connection.new(@server, channel).start

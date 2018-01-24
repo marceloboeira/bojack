@@ -4,7 +4,7 @@ require "../request"
 module BoJack
   module EventLoop
     class Message
-      def initialize(@socket : TCPSocket, @channel : ::Channel::Unbuffered(BoJack::Request)); end
+      def initialize(@socket : TCPSocket, @channel : ::Channel::Buffered(BoJack::Request)); end
 
       def start
         spawn do

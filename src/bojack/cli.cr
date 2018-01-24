@@ -54,6 +54,13 @@ module BoJack
             flag.description = "Log severity."
           end
 
+          command.flags.add do |flag|
+            flag.name = "buffer-size"
+            flag.long = "--buffer-size"
+            flag.default = 100
+            flag.description = "Size of the request channel buffer"
+          end
+
           command.run do |options, arguments|
             output =  if options.string["log"].empty?
                         STDOUT
@@ -64,7 +71,7 @@ module BoJack
             BoJack::Logger.build(output, options.int["log-level"].as(Int32),
                                  options.string["hostname"], options.int["port"].as(Int32))
 
-            BoJack::Server.new(options.string["hostname"], options.int["port"]).start
+            BoJack::Server.new(options.string["hostname"], options.int["port"], options.int["buffer-size"]).start
           end
         end
 

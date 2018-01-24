@@ -8,7 +8,7 @@ module BoJack
     class Connection
       @logger : BoJack::Logger = BoJack::Logger.instance
 
-      def initialize(@server : TCPServer, @channel : ::Channel::Unbuffered(BoJack::Request)); end
+      def initialize(@server : TCPServer, @channel : ::Channel::Buffered(BoJack::Request)); end
 
       def start
         loop do
