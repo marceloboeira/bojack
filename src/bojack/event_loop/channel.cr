@@ -6,8 +6,8 @@ module BoJack
       def start
         spawn do
           loop do
-            if action = @channel.receive
-              action.perform
+            if request = @channel.receive
+              request.perform
             end
           end
         end
