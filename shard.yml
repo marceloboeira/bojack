@@ -14,3 +14,12 @@ dependencies:
   bojack-client:
     github: hugoabonizio/bojack.cr
     version: ~> 0.1.0
+
+  resp-server:
+    github: hugoabonizio/resp.cr
+    branch: master
+
+development_dependencies:
+  resp:
+    github: soveran/resp-crystal
+    branch: master

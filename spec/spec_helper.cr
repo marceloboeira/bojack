@@ -1,4 +1,5 @@
 require "spec"
+require "resp"
 
 spawn do
   BoJack::Logger.build(IO::Memory.new)

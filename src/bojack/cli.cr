@@ -55,14 +55,14 @@ module BoJack
           end
 
           command.run do |options, arguments|
-            output =  if options.string["log"].empty?
-                        STDOUT
-                      else
-                        options.string["log"]
-                      end
+            output = if options.string["log"].empty?
+                       STDOUT
+                     else
+                       options.string["log"]
+                     end
 
             BoJack::Logger.build(output, options.int["log-level"].as(Int32),
-                                 options.string["hostname"], options.int["port"].as(Int32))
+              options.string["hostname"], options.int["port"].as(Int32))
 
             BoJack::Server.new(options.string["hostname"], options.int["port"]).start
           end

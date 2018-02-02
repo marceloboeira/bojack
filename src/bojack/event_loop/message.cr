@@ -1,4 +1,5 @@
 require "socket"
+require "resp-server"
 require "../request"
 
 module BoJack
@@ -8,13 +9,37 @@ module BoJack
 
       def start
         spawn do
-          loop do
-            message = @socket.gets
-            break unless message
+          begin
+            loop do
+              connection = RESP::Connection.new(@socket)
+              params = parse(connection)
 
-            @channel.send(BoJack::Request.new(message, @socket))
+              @channel.send(BoJack::Request.new(connection, params))
+            end
+          rescue e
+            # Client closed connection
+            # Silently ignore?
           end
         end
+      end
+
+      private def parse(connection) : Hash(Symbol, String | Array(String))
+        command, args = connection.parse
+        result = Hash(Symbol, String | Array(String)).new
+
+        unless command
+          result[:command] = "invalid"
+          return result
+        end
+
+        result[:command] = command
+
+        if args
+          result[:key] = args[0].as(String) if args[0]?
+          result[:value] = args[1].as(String) if args[1]?
+        end
+
+        result
       end
     end
   end

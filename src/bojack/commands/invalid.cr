@@ -2,14 +2,11 @@ require "./command"
 
 module BoJack
   module Commands
-    class Close < BoJack::Commands::Command
+    class Invalid < BoJack::Commands::Command
       def validate; end
 
       def perform(socket, memory, params)
-        socket.send_string("bye")
-        socket.close
-
-        "closing..."
+        "invalid command"
       end
     end
   end
